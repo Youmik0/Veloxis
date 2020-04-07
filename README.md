@@ -6,8 +6,8 @@ przedmiotów oraz ich wyszukiwanie, a wszystko to w bezpiecznym środowisku.
 Veloxis będzie pobierał niską opłatę za każdy sprzedany przedmiot na naszej
 stronie. Zapewnimy bardzo szeroki wybór dostępnych kategorii ofert, dotarcie
 do jak największej liczby konsumentów oraz przyjazną atmosferę na stronie.
-
-# Uczestnicy
-Mateusz Izdebski(Scrum Master): JavaScript, PHP
-Michał Matyja: HTML, CSS
-Marcin Hermansdorfer: mySQL, PHP
+<br/>
+# Uczestnicy<br/>
+Mateusz Izdebski(Scrum Master): JavaScript, PHP<br/>
+Michał Matyja: HTML, CSS<br/>
+Marcin Hermansdorfer: mySQL, PHP<br/>
