@@ -3,5 +3,5 @@ Veloxis jest to nowoczesna strona z ogłoszeniami oraz aukcjami dla zwykłych u�
 
 # Uczestnicy</br>
 (Scrum Master): JavaScript, PHP</br>
-Youmiko0: HTML, CSS</br>
+<b>Youmiko0</b>: HTML, CSS</br>
 : mySQL, PHP</br>
