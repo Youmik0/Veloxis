@@ -1,0 +1,92 @@
+.header {
+    background-color: white;
+    border: black;
+    display: block;
+    box-sizing: border-box;
+	height:9%;
+}
+
+#w1{
+	text-align:center;
+	width:20%;
+	float:left;
+	font-size: 50px;
+	font-family: 'KillingFont';
+}
+#w2{
+	text-align:center;
+	width:60%;
+	float:left;
+	font-size: 50px;
+}
+#w3{
+	background-color: #262626;
+	text-align:center;
+	width:20%;
+	float:left;
+	font-size: 50px;
+}
+
+.header ul {
+    display: inline-block;
+    width:100%;
+}
+
+.header > ul > li {
+    display: inline-block;
+    position:relative;
+    vertical-align:top;
+    width:25%;
+}
+
+
+
+	#stopka{
+background-color:#875080;
+text-align:right;
+height:10%;
+font-size: 18px;
+	
+	}
+	
+	#kategorie_lewo{
+float:left;
+margin-left: 70px;
+margin-top: 100px;
+width:9%;
+background-color:gray;
+	}
+	
+
+	
+
+body {
+	background-color: lightgray;
+}
+
+a {
+	text-decoration:none;
+	color: black;
+}
+
+@font-face {
+	font-family: 'KillingFont';
+	src: url('../fonts/KillingFont.otf');
+}
+
+@font-face{
+	font-family: 'Archidlys';
+	src:url('../fonts/ArchidlysOne.otf');
+}
+
+h3 {
+	font-family:'KillingFont';
+}
+.s1{
+	width:85%;
+	margin: auto;
+	color: rgba(0,0,0,.4);
+	display:block;
+	margin-bottom: 10px;
+	text-align: left;
+}
