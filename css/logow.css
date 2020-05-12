@@ -1,0 +1,74 @@
+@font-face{
+  font-family:'MF';
+  src:url('hw.ttf');
+}
+
+body{
+  background-color:#1a1a1a;
+  align-items:center;
+  display:flex;
+  justify-content:center;
+}
+
+
+#logo{
+	font-size:50px;
+	font-family:'MF';
+}
+#pod{
+	font-size:30px;
+	font-family:'MF';
+}
+
+#logowanie{
+  font-family:Arial;
+  float:left;
+  text-align:center;
+  width:700px;
+  background-color:white;
+  padding:20px;
+  border-radius:5px;
+  margin:auto;
+}
+
+[type=text],[type=password]{
+  display:block;
+  margin:auto;
+  border:0;
+  border-bottom:1px solid rgba(0,0,0,.4); 
+  margin-bottom:10px;
+  width:85%;
+  height:45px;
+  line-height:45px;
+  font-size:15px;
+  color:rgba(0,0,0,.4);
+}
+
+[type='text']:focus,[type=password]:focus{
+  outline:none;
+  border-color:black;
+}
+
+
+[type=submit]{
+  margin-top:25px;
+  width:85%;
+  background-color:#262626;
+  border-radius:8px;
+  height:50px;
+  color:white;
+  border:0;
+  font-size:20px;
+}
+
+.s1{
+	width:85%;
+	margin:auto;
+	color:rgba(0,0,0,.4);
+	display:block;
+	margin-bottom:10px;
+	text-align:left;
+}
+
+
+
