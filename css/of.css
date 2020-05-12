@@ -1,0 +1,99 @@
+@font-face{
+  font-family:'MF';
+  src:url('hw.ttf');
+}
+
+body{
+  background-color:#1a1a1a;
+}
+
+#topbar{
+	height:65px;
+	background-color:grey;
+
+}
+#logo{
+  text-align:center;
+
+  font-size:50px;
+  font-family:'MF';
+  width:25%;
+}
+#main{
+margin-top:10px;
+ }
+
+#menu{
+	float:left;
+	width:20%;
+	margin-right:20px;
+	border-radius:10px;
+}
+ 
+.op{
+	font-size:30px;
+	padding-top:10px;
+	text-align:center;
+	background-color:grey;
+	margin:5px;
+	height:50px;
+	border-radius:10px;
+	width:100%;
+}
+
+.op:hover{
+background-color:#A0A0A0;
+cursor: pointer;
+}
+#logo:hover{
+cursor: pointer;
+}
+
+#addo{
+	background-color:white;
+	width:78%;
+	float:left;
+	border-radius:10px;
+	text-align:center;
+}
+
+[type=text] {
+  display: block;
+  margin: auto;
+  border: 0;
+  border-bottom: 1px solid rgba(0,0,0,.4); 
+  margin-bottom: 10px;
+  width: 85%;
+  height: 45px;
+  line-height: 45px;
+  font-size: 15px;
+  color: rgba(0,0,0,.4);
+}
+
+
+[type=text]:focus {
+  outline: none;
+  border-color: black;
+}
+
+#kat{
+	margin: auto;
+	display: block;
+	font-size: 15px;
+  width: 85%;
+  text-align:left;
+  color: rgba(0,0,0,.4);
+}
+
+[type=submit] {
+  margin-top: 25px;
+  width: 85%;
+  background-color: #262626;
+  border-radius: 8px;
+  height: 50px;
+  color: white;
+  border: 0;
+  font-size: 20px;
+  cursor: pointer;
+}
+
