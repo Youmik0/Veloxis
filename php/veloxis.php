@@ -28,8 +28,8 @@ if(isset($_GET['logout'])) //Wylogowanie
 	<?php
 		if(isset($_SESSION['nazwa_uzytkownika'])): ?>
 		<p>Zalogowano jako: <strong><?php echo $_SESSION['nazwa_uzytkownika']; ?></strong></p>
-		<p><a href="zmiana_hasla.php">Zmień hasło</a></p>
 		<p><a href="veloxis.php?logout='1'" style="color: red;">Wyloguj</a></p>
+		<p><a href="zmiana_hasla.php">Zmień hasło</a></p>
 		<?php else:?>
 		<a href="../php/rejestracja.php">Rejestracja</a><br><a href="../php/logowanie.php">Logowanie</a>
 		<?php endif; ?>
