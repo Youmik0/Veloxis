@@ -14,12 +14,12 @@ CREATE TABLE `oferty`
   `id_oferty` Int NOT NULL AUTO_INCREMENT,
   `nazwa_oferty` Varchar(100) NOT NULL,
   `opis` Varchar(100),
-  `id` Int(11) NOT NULL,
+  `id_usera` Int(11) NOT NULL,
   `id_kategorii` Int(11) NOT NULL
 )
 ;
 
-CREATE INDEX `IX_Relationship4` ON `oferty` (`id`)
+CREATE INDEX `IX_Relationship4` ON `oferty` (`id_usera`)
 ;
 
 CREATE INDEX `IX_Relationship5` ON `oferty` (`id_kategorii`)
@@ -35,7 +35,7 @@ ALTER TABLE `oferty` ADD UNIQUE `id_oferty` (`id_oferty`)
 
 CREATE TABLE `users`
 (
-  `id` Int(11) NOT NULL AUTO_INCREMENT,
+  `id_usera` Int(11) NOT NULL AUTO_INCREMENT,
   `nazwa_uzytkownika` Varchar(100) NOT NULL,
   `imie` Varchar(100) NOT NULL,
   `nazwisko` Varchar(100) NOT NULL,
@@ -67,7 +67,7 @@ ALTER TABLE `kategoria` ADD UNIQUE `nazwa` (`nazwa`)
 
 -- Create foreign keys (relationships) section -------------------------------------------------
 
-ALTER TABLE `oferty` ADD CONSTRAINT `uzytkownicy_oferty` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+ALTER TABLE `oferty` ADD CONSTRAINT `uzytkownicy_oferty` FOREIGN KEY (`id_usera`) REFERENCES `users` (`id_usera`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
 
 ALTER TABLE `oferty` ADD CONSTRAINT `kategorie_oferty` FOREIGN KEY (`id_kategorii`) REFERENCES `kategoria` (`id_kategorii`) ON DELETE RESTRICT ON UPDATE RESTRICT
