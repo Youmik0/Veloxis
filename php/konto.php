@@ -60,6 +60,13 @@ if(isset($_POST['reg_user'])){
 				  VALUES('$nazwa_uzytkownika', '$imie', '$nazwisko', '$telefon', '$email', '$haslo')";
 		mysqli_query($db,$query);
 		$_SESSION['nazwa_uzytkownika']=$nazwa_uzytkownika;
+		$_SESSION['haslo']=$haslo;
+		$_SESSION['email']=$email;
+		$sql = "SELECT id FROM users WHERE nazwa_uzytkownika = '$nazwa_uzytkownika'";
+		$result = mysqli_query($db,$sql);
+		while($row = mysqli_fetch_array($result)){
+			$_SESSION['id']=$row['id'];
+		}
 		$_SESSION['succes']= "Jesteś teraz zalogowany";
 		header('location: veloxis.php');
 		
@@ -87,6 +94,13 @@ if(count($errors)==0){//Jeżeli wszystko poszło dobrze:
 	$results = mysqli_query($db,$query);
 	if(mysqli_num_rows($results)==1){//Jeżeli wszystko się zgadza zaloguj
 		$_SESSION['nazwa_uzytkownika']=$nazwa_uzytkownika;
+		$_SESSION['haslo']=$haslo;
+		$_SESSION['email']=$email;
+		$sql = "SELECT id FROM users WHERE nazwa_uzytkownika = '$nazwa_uzytkownika'";
+		$result = mysqli_query($db,$sql);
+		while($row = mysqli_fetch_array($result)){
+			$_SESSION['id']=$row['id'];
+		}
 		$_SESSION['succes']="Jesteś teraz zalogowany";
 		header('location: veloxis.php');
 	}else{//W innym wypadku error
@@ -94,26 +108,4 @@ if(count($errors)==0){//Jeżeli wszystko poszło dobrze:
 	}
 }
 
-//Zmiana hasła Trzeba do osobnego pliku bo tu na nowo otwiera sesje
-if(isset($_POST['change_pass'])){//Pozyskanie danych z okienka do logowania
-	$_SESSION['nazwa_uzytkownika']=$nazwa_uzytkownika;
-	$haslo_nowe1 = mysqli_real_escape_string($db,$_POST['haslo1']);
-	$haslo_nowe2 = mysqli_real_escape_string($db,$_POST['haslo2']);
-	if(empty($haslo_nowe1)){//Sprawdzenie czy nie puste haslo
-	array_push($errors,"Wymagane jest hasło");
-}
-	if(empty($haslo_nowe2)){//Sprawdzenie czy nie puste haslo
-	array_push($errors,"Wymagane jest potwierdzenie hasła");
-}	
-	if($haslo_nowe1 != $haslo_nowe2){
-		array_push($errors,"Dwa hasła się niezgadzają.");
-	}
-	if(count($errors)==0){
-	$haslo_nowe= md5(haslo_nowe1);
-	$query="UPDATE users SET haslo ='$haslo_nowe' WHERE nazwa_uzytkownika='$nazwa_uzytkownika'";
-	$query2="UPDATE users SET haslo='$haslo_nowe' WHERE nazwa_uzytkownika='" . $_SESSION["nazwa_uzytkownika"] . "'";
-	mysqli_query($db,$query2);
-	header('location: veloxis.php');
-	}
-}
 ?>
