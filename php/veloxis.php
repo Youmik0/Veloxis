@@ -13,28 +13,61 @@ if(isset($_GET['logout'])) //Wylogowanie
 <head>
   <meta charset="UTF-8">
   <title>Veloxis</title>
-  <link rel="stylesheet" href="../css/gl.css">
+  <link rel="stylesheet" href="s.css">
 </head>
 <body>
 
-	<div id="topbar"><div id="logo"><a href="../php/veloxis.php">Veloxis</a></div>
-	<div id="wyszukaj"><form><input type="text" id="te" placeholder="Czego szukasz?"><input type="submit" id="sButton"  placeholder="\f002"></form></div>
+	<div id="topbar"><div id="logo">Veloxis</div>
+	<div id="wyszukaj"><form><input type="text" id="te" placeholder="Czego szukasz?"><button class="bt" >&#x2315;</button></form></div>
 	<div id="user">
 	
 	<?php
 		if(isset($_SESSION['nazwa_uzytkownika'])): ?>
-		<p>Zalogowano jako: <strong><?php echo $_SESSION['nazwa_uzytkownika'] ." [#". $_SESSION['id'] ."]"; ?></strong></p>
-		<p><a href="veloxis.php?logout='1'" style="color: red;">Wyloguj</a></p>
-		<p><a href="zmiana_hasla.php">Zmień hasło</a></p>
+		
+		<div class="w1">
+		</div>
+		<div class="w1">
+		<div class="dropd">
+		<button onclick="myFunction()" class="drop"><?php echo $_SESSION['nazwa_uzytkownika'] ." [#". $_SESSION['id'] ."]"; ?></button>
+		<div id="mDropd" class="dropd-cont">
+		<a href="#h">Dodaj ofertę</a>
+		<a href="#a">Ustawienia</a>
+		<a href="veloxis.php?logout='1'">Wyloguj</a>
+		</div>
+		
 		<?php else:?>
-		<a href="../php/rejestracja.php">Rejestracja</a><br><a href="../php/logowanie.php">Logowanie</a>
+		<div id="rej">Zarejestruj</div>
+		<div id="log">Zaloguj</div>
+		<script>
+		document.getElementById("rej").addEventListener("click", zRej);
+
+		function zRej() {
+		window.location.href="../php/rejestracja.php";
+		}
+
+		document.getElementById("log").addEventListener("click", zLog);
+
+		function zLog() {
+		window.location.href="../php/logowanie.php";
+		}
+		</script>
 		<?php endif; ?>
+		
+		
 	</div></div>
 	<div id="cont">
 	<div id="kategorie"><a href="dodawanie.php">Dodanie oferty</a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 	<div id="losoferty"><center><img src="../img/027.jpeg"></center></div>
 	<div id="adv"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 	</div>
+	<script>
+	document.getElementById("logo").addEventListener("click", toM);
+
+	function toM() {
+	window.location.href="../php/veloxis.php";
+	}
+	</script>
 </body>
 
 </html>
+
