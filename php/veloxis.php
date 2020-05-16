@@ -13,7 +13,7 @@ if(isset($_GET['logout'])) //Wylogowanie
 <head>
   <meta charset="UTF-8">
   <title>Veloxis</title>
-  <link rel="stylesheet" href="s.css">
+  <link rel="stylesheet" href="../css/gl.css">
 </head>
 <body>
 
