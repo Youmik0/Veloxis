@@ -34,7 +34,27 @@ if(isset($_GET['logout'])) //Wylogowanie
 		<a href="#a">Ustawienia</a>
 		<a href="veloxis.php?logout='1'">Wyloguj</a>
 		</div>
-		
+		</div>
+		</div>
+		<script>
+
+		function myFunction() {
+		document.getElementById("mDropd").classList.toggle("show");
+			}
+
+			window.onclick = function(event) {
+			if (!event.target.matches('.drop')) {
+				var dropdowns = document.getElementsByClassName("dropd-cont");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+				var openDropdown = dropdowns[i];
+				if (openDropdown.classList.contains('show')) {
+					openDropdown.classList.remove('show');
+						}
+					}
+				}
+			}
+		</script>	
 		<?php else:?>
 		<div id="rej">Zarejestruj</div>
 		<div id="log">Zaloguj</div>
@@ -70,4 +90,3 @@ if(isset($_GET['logout'])) //Wylogowanie
 </body>
 
 </html>
-
