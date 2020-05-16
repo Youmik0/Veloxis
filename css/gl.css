@@ -10,7 +10,6 @@ body{
 #topbar{
 	height:65px;
 	background-color:grey;
-	clear:both;
 }
 #logo{
   text-align:center;
@@ -21,7 +20,7 @@ body{
 }
 
 #wyszukaj{
-  padding-top:15px;
+  padding-top:10px;
   float:left;
   text-align:center;
   width:50%;
@@ -31,7 +30,6 @@ body{
 #user{
   background-color:white;
   float:left;
-  text-align:center;
   width:25%;
   height:65px;
 }
@@ -54,12 +52,45 @@ te::placeholder{
   outline:none;
   color:grey;
 }
+.w1{
+	width:50%;
+	  height:65px;
+	float:left;
+}
 
-#sButton {
-	margin-top:1px;
-	font-size:15px;
+.w1:first-child{
+	background-color:grey;
+}
+#rej{
+	padding-top:15px;
+	cursor:pointer;
+	text-align:center;
+	width:50%;
+	height:50px;
+	float:left;
+	font-size:25px;
+}
+#rej:hover{
+	background-color:gray;
+}
+#log{
+	padding-top:15px;
+	font-size:25px;
+	cursor:pointer;
+	text-align:center;
+	width:50%;
+	height:50px;
+	float:left;
+}
+#log:hover{
+	background-color:gray;
+}
+.bt{
+	margin-top:2px;
+	height:44px;
+	width:50px;
+	font-size:30px;
 	outline:none;
-	height:39;
 	background-color:white;
 	border:gray;
 	border-top-right-radius: 10px;
@@ -98,4 +129,49 @@ te::placeholder{
 	background-color:grey;
 	border-radius:10px;
 }	
+
+
+
+.drop{
+  height:65px;
+  width:200px;
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.drop:hover, .drop:focus {
+  background-color: #2980B9;
+}
+
+.dropd {
+  position: relative;
+  display: inline-block;
+  
+}
+
+.dropd-cont {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropd-cont a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+   border-bottom: 1px solid rgba(0,0,0,.4);
+}
+
+.dropd a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
 
