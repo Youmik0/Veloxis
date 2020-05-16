@@ -1,9 +1,5 @@
 <?php
 session_start();
-//if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie masz dostępu do tej strony
-//	$_SESSION['msg']="Musisz się najpierw zalogować";
-//	header('location: logowanie.php');
-//}
 if(isset($_GET['logout'])) //Wylogowanie
 {
 	session_destroy();
@@ -27,7 +23,7 @@ if(isset($_GET['logout'])) //Wylogowanie
 	
 	<?php
 		if(isset($_SESSION['nazwa_uzytkownika'])): ?>
-		<p>Zalogowano jako: <strong><?php echo $_SESSION['nazwa_uzytkownika']; ?></strong></p>
+		<p>Zalogowano jako: <strong><?php echo $_SESSION['nazwa_uzytkownika'] ." [#". $_SESSION['id'] ."]"; ?></strong></p>
 		<p><a href="veloxis.php?logout='1'" style="color: red;">Wyloguj</a></p>
 		<p><a href="zmiana_hasla.php">Zmień hasło</a></p>
 		<?php else:?>
@@ -35,7 +31,7 @@ if(isset($_GET['logout'])) //Wylogowanie
 		<?php endif; ?>
 	</div></div>
 	<div id="cont">
-	<div id="kategorie">a<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+	<div id="kategorie"><a href="dodawanie.php">Dodanie oferty</a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 	<div id="losoferty"><center><img src="../img/027.jpeg"></center></div>
 	<div id="adv"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 	</div>
