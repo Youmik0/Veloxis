@@ -1,4 +1,4 @@
-<?php include('zmiana_hasla_conf.php') ?>
+<?php include('ustawienia_uz.php') ?>
 <html>
 <head>
 <meta charset="UTF-8">
