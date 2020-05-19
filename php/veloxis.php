@@ -18,7 +18,7 @@ if(isset($_GET['logout'])) //Wylogowanie
 <body>
 
 	<div id="topbar"><div id="logo">Veloxis</div>
-	<div id="wyszukaj"><form><input type="text" id="te" placeholder="Czego szukasz?"><button class="bt" >&#x2315;</button></form></div>
+	<div id="wyszukaj"><form method="post" action="veloxis.php"><input name="search" type="text" id="te" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button></form></div>
 	<div id="user">
 	
 	<?php
@@ -77,7 +77,26 @@ if(isset($_GET['logout'])) //Wylogowanie
 	</div></div>
 	<div id="cont">
 	<div id="kategorie"><a href="dodawanie.php">Dodanie oferty</a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
-	<div id="losoferty"><center><img src="../img/027.jpeg"></center></div>
+	<div id="losoferty"><?php
+		
+
+		$con = mysqli_connect('localhost','root','','Veloxis');
+
+		$con->set_charset("utf8");
+		if($con->connect_error){
+			echo 'Connection Faild: '.$con->connect_error;
+		}else{
+			if(array_key_exists('bt1', $_POST)) {
+			$search_value=$_POST["search"];
+			$sql="select * from oferty where nazwa_oferty like '%$search_value%'";
+			$res=$con->query($sql);
+
+			while($row=$res->fetch_assoc()){
+				echo '<div class="oferta"><div class="pic"></div><div class="cr"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div>';
+			} 
+			}else{echo "xd";}
+		}
+?></div>
 	<div id="adv"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 	</div>
 	<script>
