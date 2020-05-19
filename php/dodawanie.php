@@ -23,6 +23,7 @@
 	<?php include('errors.php'); ?>
        <input type="text" name="nazwa" placeholder="Nazwa aukcji"/>
        <input type="text" name="opis" placeholder="Opis aukcji"/>
+       <input type="text" name="cena" placeholder="Cena"/>
 	<select name="kategoria">
 	<option>Wybierz kategorie</option>
 	<option value="1">Elektronika</option>
