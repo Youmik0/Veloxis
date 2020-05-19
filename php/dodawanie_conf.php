@@ -8,6 +8,7 @@ $nazwa="";
 $opis="";
 $kategoria="";
 $id_uzytkownika=$_SESSION['id'];
+$cena="";
 //
 //Łączenie z bazą
 $db = mysqli_connect('localhost','root','','Veloxis');
@@ -30,9 +31,11 @@ if(isset($_POST['dodawanie_oferty'])){
 	$nazwa=$_POST['nazwa'];
 	$opis=$_POST['opis'];
 	$kategoria=$_POST['kategoria'];
+	$cena=$_POST['cena'];
 	if(empty($nazwa)){array_push($errors,"Nazwa aukcji jest wymagana.");}
 	if(empty($opis)){$opis=NULL;}
 	if(empty($kategoria)){array_push($errors,"Musisz wybrać kategorię produktu.");}
+	if(empty($cena)){array_push($errors,"Proszę podać cenę produktu.");}
 	if(count($errors)==0){
 	mysqli_query($db,"INSERT INTO oferty(nazwa_oferty,opis,id_kategorii,id_uzytkownika,zdjecie) VALUES('$nazwa','$opis','$kategoria','$id_uzytkownika',\"".$content."\")");
 	}
