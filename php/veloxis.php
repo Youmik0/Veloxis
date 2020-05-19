@@ -30,8 +30,8 @@ if(isset($_GET['logout'])) //Wylogowanie
 		<div class="dropd">
 		<button onclick="myFunction()" class="drop"><?php echo $_SESSION['nazwa_uzytkownika'] ." [#". $_SESSION['id'] ."]"; ?></button>
 		<div id="mDropd" class="dropd-cont">
-		<a href="#h">Dodaj ofertę</a>
-		<a href="#a">Ustawienia</a>
+		<a href="dodawanie.php">Dodaj ofertę</a>
+		<a href="ustawienia.php">Ustawienia</a>
 		<a href="veloxis.php?logout='1'">Wyloguj</a>
 		</div>
 		</div>
