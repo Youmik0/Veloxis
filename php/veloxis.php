@@ -90,9 +90,17 @@ if(isset($_GET['logout'])) //Wylogowanie
 			$search_value=$_POST["search"];
 			$sql="select * from oferty where nazwa_oferty like '%$search_value%'";
 			$res=$con->query($sql);
-
+	
 			while($row=$res->fetch_assoc()){
-				echo '<div class="oferta"><div class="pic"></div><div class="cr"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div>';
+				$id=$row["id"];
+				$base="http://localhost/xd/php/test.php";
+				$data = array(
+				'id' => $id
+				);
+				
+				$url = $base . '?' . http_build_query($data);
+				
+				echo '<a href='.$url.'><div class="oferta"><div class="pic"></div><div class="cr"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
 			} 
 			}else{echo "xd";}
 		}
