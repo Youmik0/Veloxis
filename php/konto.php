@@ -75,18 +75,25 @@ if(isset($_POST['reg_user'])){
 	}
 	
 //Logowanie
-
+$_user_error;
+$_password_error;
+if(array_key_exists('login_user', $_POST)) {
 if(isset($_POST['login_user'])){//Pozyskanie danych z okienka do logowania
 	$nazwa_uzytkownika = mysqli_real_escape_string($db,$_POST['nazwa_uzytkownika']);
 	$haslokodowane = mysqli_real_escape_string($db,$_POST['haslo']);
 }
 
 if(empty($nazwa_uzytkownika)){//Sprawdzenie czy nie pusty user
+	$_user_error='<p class="err">Podaj nazwe użytkownika</p>';
 	array_push($errors,"Wymagana jest Nazwa użytkownika");
 }
 if(empty($haslokodowane)){//Sprawdzenie czy nie puste haslo
-	array_push($errors,"Wymagane jest hasło");
+	$_password_error='<p class="err">Podaj hasło</p>';
+	array_push($errors,'<p class="err">Invalid user id or password Please try again</p>');
 }
+
+
+
 
 if(count($errors)==0){//Jeżeli wszystko poszło dobrze:
 	$haslo=md5($haslokodowane);//Odszyfrowanie hasła
@@ -105,7 +112,8 @@ if(count($errors)==0){//Jeżeli wszystko poszło dobrze:
 		header('location: veloxis.php');
 	}else{//W innym wypadku error
 		array_push($errors,"Zła kombinacja nazwy użytkownika/hasła");
+		$_password_error='<p class="err">Zła kombinacja nazwy użytkownika/hasła</p>';
 	}
 }
-
+}
 ?>
