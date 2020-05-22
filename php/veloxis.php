@@ -35,7 +35,7 @@ if(empty($_SESSION['profilowe']))
 		</div>
 		<div class="w1">
 		<div class="dropd">
-		<button onclick="myFunction()" class="drop"><?php echo $_SESSION['nazwa_uzytkownika'] ." [#". $_SESSION['id'] ."]"; ?></button>
+		<button onclick="myFunction()" class="drop"><?php echo $_SESSION['nazwa_uzytkownika'] ." [#". $_SESSION['id'] ."]"; echo "<img src='profilowe/". $_SESSION["profilowe"] ."' width='65px' height='65px' style='float:right'>"; ?></button>
 		<div id="mDropd" class="dropd-cont">
 		<a href="dodawanie.php">Dodaj ofertę</a>
 		<a href="ustawienia.php">Ustawienia</a>
