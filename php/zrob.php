@@ -16,11 +16,11 @@ echo "id_uzytkownika:" .$Values['id_uzytkownika'];
 echo '<br>';
 echo "id_zdjecia:" .$Values['id_zdjecia'];
 echo '<br>';
-$nazwa =$Values[nazwa];
-$opis =$Values[opis];
-$cena=$Values[cena];
-$kategoria=$Values[kategoria];
-$id_uzytkownika=$Values[id_uzytkownika];
+$nazwa =$Values['nazwa'];
+$opis =$Values['opis'];
+$cena=$Values['cena'];
+$kategoria=$Values['kategoria'];
+$id_uzytkownika=$Values['id_uzytkownika'];
 $id_zdjecia=$Values['id_zdjecia'];
 $nazwa_zdjecia=$Values['nazwa_zdjecia'];
 
