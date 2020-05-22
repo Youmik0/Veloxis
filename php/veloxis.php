@@ -98,8 +98,7 @@ if(isset($_GET['logout'])) //Wylogowanie
 				);
 				
 				$url = $base . '?' . http_build_query($data);
-				//echo "<img src='oferty/". $row["nazwa_zdjecia"] ."'>"; //Wyswietla zdjecie
-				echo '<a href='.$url.'><div class="oferta"><div class="pic"></div><div class="cr"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
+				echo '<a href='.$url.'><div class="oferta"><div class="pic"><img src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
 			} 
 			}else{echo "xd";}
 		}
