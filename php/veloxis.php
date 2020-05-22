@@ -18,6 +18,8 @@ if(isset($_GET['logout'])) //Wylogowanie
 <body>
 
 	<div id="topbar"><div id="logo">Veloxis</div>
+	<div id="rej">Rejestracja</div>
+		<div id="log">Logowanie</div>
 	<div id="wyszukaj"><form method="post" action="veloxis.php"><input name="search" type="text" id="te" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button></form></div>
 	<div id="user">
 	
@@ -25,15 +27,14 @@ if(isset($_GET['logout'])) //Wylogowanie
 		if(isset($_SESSION['nazwa_uzytkownika'])): ?>
 		
 		<div class="w1">
-		</div>
-		<div class="w1">
 		<div class="dropd">
-		<button onclick="myFunction()" class="drop"><?php echo $_SESSION['nazwa_uzytkownika'] ." [#". $_SESSION['id'] ."]"; ?></button>
+		<button onclick="myFunction()" class="drop">Menu<?php echo $_SESSION['nazwa_uzytkownika'] ." [#". $_SESSION['id'] ."]"; ?></button>
 		<div id="mDropd" class="dropd-cont">
 		<a href="dodawanie.php">Dodaj ofertę</a>
 		<a href="ustawienia.php">Ustawienia</a>
 		<a href="veloxis.php?logout='1'">Wyloguj</a>
 		</div>
+		Użytkownik
 		</div>
 		</div>
 		<script>
@@ -56,8 +57,6 @@ if(isset($_GET['logout'])) //Wylogowanie
 			}
 		</script>	
 		<?php else:?>
-		<div id="rej">Zarejestruj</div>
-		<div id="log">Zaloguj</div>
 		<script>
 		document.getElementById("rej").addEventListener("click", zRej);
 
@@ -76,7 +75,7 @@ if(isset($_GET['logout'])) //Wylogowanie
 		
 	</div></div>
 	<div id="cont">
-	<div id="kategorie"><a href="dodawanie.php">Dodanie oferty</a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+	<div id="kategorie"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 	<div id="losoferty"><?php
 		
 
