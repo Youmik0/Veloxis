@@ -4,11 +4,13 @@
 }
 
 body{
-  background-color:#f8fae8;
+  background-color:#1a1a1a;
 }
 
 #topbar{
 	height:65px;
+	background-color:grey;
+	
 }
 #logo{
   text-align:center;
@@ -31,7 +33,7 @@ margin-top:10px;
 	font-size:30px;
 	padding-top:10px;
 	text-align:center;
-	background-color:#f0ca99;
+	background-color:#gray;
 	margin:5px;
 	height:50px;
 	border-radius:10px;
@@ -48,8 +50,8 @@ cursor: pointer;
 }
 
 #addo{
-	background-color:#e0ffeb;
-	width:50%;
+	background-color:#white;
+	width:78%;
 	float:left;
 	border-radius:10px;
 	text-align:center;
