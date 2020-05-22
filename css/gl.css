@@ -32,7 +32,6 @@ body{
   float:left;
   width:25%;
   height:65px;
-  text-align:center;
 }
 
 #te{
@@ -62,7 +61,6 @@ te::placeholder{
 .w1:first-child{
 	background-color:grey;
 }
-
 #rej{
 	padding-top:15px;
 	cursor:pointer;
@@ -111,7 +109,7 @@ te::placeholder{
 	width:20%;
 	height:90%;
 	margin-right:20px;
-	background-color:#gray;
+	background-color:grey;
 	border-radius:10px;
 }
 
@@ -120,7 +118,7 @@ te::placeholder{
 	width:60%;
 	height:90%;
 	margin-right:20px;
-	background-color:gray;
+	background-color:grey;
 	border-radius:10px;
 }
 
@@ -200,4 +198,5 @@ margin-bottom:10px;
 
 .pric{
 	min-height:49px;
+	
 }
