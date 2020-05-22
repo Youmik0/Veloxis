@@ -1,5 +1,7 @@
 <?php
 session_start();
+$db = mysqli_connect('localhost','root','','veloxis');
+$db->set_charset("utf8");
 //Inicjalizacja zmiennych
 $nazwa_uzytkownika = "";
 $imie = "";
@@ -9,6 +11,7 @@ $email = "";
 $haslo1 = "";
 $haslo2 = "";
 $errors = array();
+
 
 //Połączenie z bazą danych
 $db = mysqli_connect('localhost','root','','Veloxis');
@@ -62,6 +65,7 @@ if(isset($_POST['reg_user'])){
 		$_SESSION['nazwa_uzytkownika']=$nazwa_uzytkownika;
 		$_SESSION['haslo']=$haslo;
 		$_SESSION['email']=$email;
+		$_SESSION['typ_konta']=3;
 		$sql = "SELECT id FROM users WHERE nazwa_uzytkownika = '$nazwa_uzytkownika'";
 		$result = mysqli_query($db,$sql);
 		while($row = mysqli_fetch_array($result)){
@@ -103,12 +107,25 @@ if(count($errors)==0){//Jeżeli wszystko poszło dobrze:
 		$_SESSION['nazwa_uzytkownika']=$nazwa_uzytkownika;
 		$_SESSION['haslo']=$haslo;
 		$_SESSION['email']=$email;
-		$_SESSION['profilowe']="puste.jpg";
+		
+		$sql2="SELECT typ_konta FROM users WHERE nazwa_uzytkownika='$nazwa_uzytkownika'";
+		$result2 = mysqli_query($db,$sql2);
+		$row2=mysqli_fetch_row($result2);
+		$_SESSION['typ_konta']=$row2[0];
+		
 		$sql = "SELECT id FROM users WHERE nazwa_uzytkownika = '$nazwa_uzytkownika'";
 		$result = mysqli_query($db,$sql);
 		while($row = mysqli_fetch_array($result)){
 			$_SESSION['id']=$row['id'];
+			$id=$_SESSION['id'];
+			
 		}
+		$sql3="SELECT nazwa FROM profilowe WHERE id_uzytkownika='$id'";
+		$result3 = mysqli_query($db,$sql3);
+		$row3=mysqli_fetch_array($result3);
+		$_SESSION['profilowe']=$row3[0];
+		
+		
 		$_SESSION['succes']="Jesteś teraz zalogowany";
 		header('location: veloxis.php');
 	}else{//W innym wypadku error
