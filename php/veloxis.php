@@ -4,9 +4,16 @@ if(isset($_GET['logout'])) //Wylogowanie
 {
 	session_destroy();
 	unset($_SESSION['nazwa_uzytkownika']);
+	unset($_SESSION['haslo']);
+	unset($_SESSION['email']);
+	unset($_SESSION['profilowe']);
+	unset($_SESSION['id']);
 	header("location: veloxis.php");
 }
-
+if(empty($_SESSION['profilowe']))
+{
+	$_SESSION['profilowe']="puste.jpg";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,6 +39,11 @@ if(isset($_GET['logout'])) //Wylogowanie
 		<div id="mDropd" class="dropd-cont">
 		<a href="dodawanie.php">Dodaj ofertę</a>
 		<a href="ustawienia.php">Ustawienia</a>
+		<?php
+		$typ_konta=$_SESSION['typ_konta'];
+		if($typ_konta==1): ?>
+		<a href="admin.php">Admin tools</a>
+		<?php endif; ?>
 		<a href="veloxis.php?logout='1'">Wyloguj</a>
 		</div>
 		</div>
