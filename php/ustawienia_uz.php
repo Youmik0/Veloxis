@@ -70,6 +70,7 @@ if(isset($_POST['premium'])){//Daj premium
 	$rowen=mysqli_fetch_row($daten);
 	$id_premium=$rowen[0];
 	mysqli_query($db,"UPDATE users SET typ_konta='2', id_premium='$id_premium' WHERE nazwa_uzytkownika='$nazwa_uzytkownika'");
+	mysqli_query($db,"UPDATE oferty SET premium='1' WHERE id_uzytkownika='$id'");
 	$_SESSION['typ_konta']='2';
 	//header('location: veloxis.php');
 	}
