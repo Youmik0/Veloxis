@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 27 Maj 2020, 02:31
+-- Czas generowania: 27 Maj 2020, 16:58
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.3
 
@@ -60,6 +60,7 @@ CREATE TABLE `oferty` (
   `marka` varchar(50) COLLATE utf8_polish_ci DEFAULT NULL,
   `stan` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `id_uzytkownika` int(11) NOT NULL,
+  `premium` int(11) NOT NULL DEFAULT 0,
   `id_zdjecia` int(11) DEFAULT NULL,
   `nazwa_zdjecia` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
@@ -79,6 +80,26 @@ CREATE TABLE `oferty_zdj` (
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `premium`
+--
+
+CREATE TABLE `premium` (
+  `id` int(11) NOT NULL,
+  `id_uzytkownika` int(11) NOT NULL,
+  `premium_do` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `premium`
+--
+
+INSERT INTO `premium` (`id`, `id_uzytkownika`, `premium_do`) VALUES
+(1, 1, '2022-10-20 15:07:32'),
+(4, 4, '2020-06-26 16:10:24');
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `profilowe`
 --
 
@@ -93,7 +114,7 @@ CREATE TABLE `profilowe` (
 --
 
 INSERT INTO `profilowe` (`id`, `nazwa`, `id_uzytkownika`) VALUES
-(1, 'puste.jpg', 1);
+(1, '52827-364582.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -130,23 +151,25 @@ INSERT INTO `stan` (`id`, `nazwa`, `opis`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `nazwa_uzytkownika` varchar(100) COLLATE utf8_polish_ci NOT NULL,
+  `nazwa_uzytkownika` varchar(19) COLLATE utf8_polish_ci NOT NULL,
   `imie` varchar(100) COLLATE utf8_polish_ci NOT NULL,
   `nazwisko` varchar(100) COLLATE utf8_polish_ci NOT NULL,
   `telefon` varchar(15) COLLATE utf8_polish_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_polish_ci NOT NULL,
   `haslo` varchar(100) COLLATE utf8_polish_ci NOT NULL,
-  `typ_konta` int(11) NOT NULL DEFAULT 3
+  `typ_konta` int(11) NOT NULL DEFAULT 3,
+  `id_premium` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `users`
 --
 
-INSERT INTO `users` (`id`, `nazwa_uzytkownika`, `imie`, `nazwisko`, `telefon`, `email`, `haslo`, `typ_konta`) VALUES
-(1, 'Weeb', 'Weeb', 'Weeb', '666789123', 'Weeb@gmail.com', 'a472d788aa233457dd764aa6c7ae4018', 3),
-(2, 'Test', 'Test', 'Test', '234324324', 'Test@gmail.com', '0cbc6611f5540bd0809a388dc95a615b', 3),
-(3, 'Nowy', 'Nowy', 'Nowy', '54654642', 'nowy@gmail.com', '202025f4f6b40ab1e3df52dee62b998e', 3);
+INSERT INTO `users` (`id`, `nazwa_uzytkownika`, `imie`, `nazwisko`, `telefon`, `email`, `haslo`, `typ_konta`, `id_premium`) VALUES
+(1, 'Weeb', 'Weeb', 'Weeb', '666789123', 'Weeb@gmail.com', 'a472d788aa233457dd764aa6c7ae4018', 1, 1),
+(2, 'Test', 'Test', 'Test', '234324324', 'Test@gmail.com', '0cbc6611f5540bd0809a388dc95a615b', 3, NULL),
+(3, 'Nowy', 'Nowy', 'Nowy', '54654642', 'nowy@gmail.com', '202025f4f6b40ab1e3df52dee62b998e', 3, NULL),
+(4, 'Awa', 'Awa', 'Awa', '12343523', 'Awa@gmail.com', 'aa00ce8b38d75c80bcaae1b8c33a89ab', 2, 4);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -177,6 +200,13 @@ ALTER TABLE `oferty_zdj`
   ADD UNIQUE KEY `id_oferty` (`id_oferty`);
 
 --
+-- Indeksy dla tabeli `premium`
+--
+ALTER TABLE `premium`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_uzytkownika` (`id_uzytkownika`) USING BTREE;
+
+--
 -- Indeksy dla tabeli `profilowe`
 --
 ALTER TABLE `profilowe`
@@ -195,7 +225,8 @@ ALTER TABLE `stan`
 -- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_premium` (`id_premium`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -220,6 +251,12 @@ ALTER TABLE `oferty_zdj`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT dla tabeli `premium`
+--
+ALTER TABLE `premium`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT dla tabeli `profilowe`
 --
 ALTER TABLE `profilowe`
@@ -235,7 +272,7 @@ ALTER TABLE `stan`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -257,10 +294,22 @@ ALTER TABLE `oferty_zdj`
   ADD CONSTRAINT `oferty_zdj_ibfk_1` FOREIGN KEY (`id_oferty`) REFERENCES `oferty` (`id`);
 
 --
+-- Ograniczenia dla tabeli `premium`
+--
+ALTER TABLE `premium`
+  ADD CONSTRAINT `premium_ibfk_1` FOREIGN KEY (`id_uzytkownika`) REFERENCES `users` (`id`);
+
+--
 -- Ograniczenia dla tabeli `profilowe`
 --
 ALTER TABLE `profilowe`
   ADD CONSTRAINT `profilowe_ibfk_1` FOREIGN KEY (`id_uzytkownika`) REFERENCES `users` (`id`);
+
+--
+-- Ograniczenia dla tabeli `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_premium`) REFERENCES `premium` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
