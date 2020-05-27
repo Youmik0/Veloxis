@@ -17,6 +17,7 @@ body{
   font-size:50px;
   font-family:'MF';
   width:25%;
+  cursor:pointer;
 }
 
 #wyszukaj{
@@ -101,7 +102,7 @@ te::placeholder{
 
 #cont{
 	margin:20px;
-	height:90%;
+
 }	
 
 #kategorie{
@@ -118,7 +119,7 @@ te::placeholder{
 	width:60%;
 	height:90%;
 	margin-right:20px;
-	background-color:grey;
+
 	border-radius:10px;
 }
 
@@ -133,11 +134,12 @@ te::placeholder{
 
 
 .drop{
-  height:65px;
+	text-align:center;
+	height:42px;
   width:200px;
+  padding-top:23px;
   background-color: #3498DB;
   color: white;
-  padding: 16px;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -174,14 +176,6 @@ te::placeholder{
 
 .show {display: block;}
 
-.ofertapromowana{
-width:100%;
-height:133px;
-background-color:gray;
-border-bottom:1px solid rgba(0,0,0,.4);
-margin-bottom:10px;
-}
-
 .oferta{
 width:100%;
 height:133px;
@@ -195,13 +189,6 @@ margin-bottom:10px;
 	float:left;
 	
 }
-
-.crpromowane{
-	float:left;
-	width:85%;
-	background-image: url("../img/gwiazdki.jpg");
-}
-
 .cr{
 	float:left;
 	background-color:white;
@@ -214,4 +201,83 @@ margin-bottom:10px;
 .pric{
 	min-height:49px;
 	
+}
+
+.xd2{
+
+	margin-top:-23px;
+	float:right;
+}
+
+
+.ofertapromowana{
+width:100%;
+height:133px;
+background-color:gray;
+border-bottom:1px solid rgba(0,0,0,.4);
+margin-bottom:10px;
+}
+
+
+.crpromowane{
+	float:left;
+	width:85%;
+	background-image: url("../img/gwiazdki.jpg");
+}
+
+
+
+.w3-display-container{position:relative}
+.w3-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+.w3-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}  
+.w3-button:disabled{cursor:not-allowed;opacity:0.3}.w3-disabled *,:disabled *{pointer-events:none}
+.w3-display-left{position:absolute;margin-top:20%;left:0%;transform:translate(0%,-50%);-ms-transform:translate(-0%,-50%)}
+.w3-display-right{position:absolute;margin-top:20%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
+.w3-black,.w3-hover-black:hover{color:#fff!important;background-color:#000!important}
+
+
+.slider{
+
+	background-color:white;
+	padding:25px;
+	float:left;
+	width:95%;
+	min-height:300px;
+
+}
+
+.imgg{
+	width:70%;
+	float:left;
+}
+
+.dsc{
+	padding-top:300px;
+	width:30%;
+	float:left;
+}
+
+.title{
+	font-size:35px;
+	font-weight:bold;
+	width:90%;
+}
+
+
+.price{
+	padding:15px;
+	font-size:40px;
+	width:90%;
+}
+.buy{
+	padding:5px;
+	padding-top:7px;
+	margin-top:20px;
+	margin-left:20px;
+	background-color:#ff9900;
+	color:white;
+	width:90%;
+	font-size:25px;
+	min-height:35px;
+	text-align:center;
 }
