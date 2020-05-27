@@ -14,5 +14,8 @@
 <img src="./profilowe/<?php echo htmlspecialchars($_SESSION['profilowe']); ?>">
 <?php echo $_SESSION['profilowe']; ?>
 <br>
+<form method="post" action="../php/ustawienia.php" ENCTYPE="multipart/form-data">
+<button type="submit" class="btn" name="premium">Uzyskaj premium</button>
+</form>
 </body>
 </html>
