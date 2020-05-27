@@ -20,12 +20,16 @@ if(isset($_POST['dodawanie_oferty'])){
 	$opis=$_POST['opis'];
 	$kategoria=$_POST['kategoria'];
 	$cena=$_POST['cena'];
+	$stan=$_POST['stan'];
+	$marka=$_POST['marka'];
 	if(empty($nazwa)){array_push($errors,"Nazwa aukcji jest wymagana.");}
 	if(empty($opis)){$opis=NULL;}
 	if(empty($kategoria)){array_push($errors,"Musisz wybrać kategorię produktu.");}
 	if(empty($cena)){array_push($errors,"Proszę podać cenę produktu.");}
-	if(count($errors)==0){
-	mysqli_query($db,"INSERT INTO oferty(nazwa_oferty,opis,cena,id_kategorii,id_uzytkownika) VALUES('$nazwa','$opis','$cena','$kategoria','$id_uzytkownika')");
+	if(empty($stan)){array_push($errors,"Proszę podać stan produktu.");}
+	if(empty($marka)){array_push($errors,"Proszę podać markę produktu.");}
+	if(count($errors)==0){	
+	mysqli_query($db,"INSERT INTO oferty(nazwa_oferty,opis,cena,id_kategorii,marka,stan,id_uzytkownika) VALUES('$nazwa','$opis','$cena','$kategoria','$marka','$stan','$id_uzytkownika')");
 	
 	$sql = "SELECT id FROM oferty WHERE nazwa_oferty='$nazwa' AND opis='$opis' AND cena='$cena' AND id_kategorii='$kategoria' AND id_uzytkownika='$id_uzytkownika'";
 	$result = mysqli_query($db,$sql);
@@ -81,6 +85,7 @@ if(isset($_POST['dodawanie_oferty'])){
 	//if (mysqli_num_rows($result) != 0) { $row = mysqli_fetch_assoc($result); echo base64_decode($row['zdjecie']); }  Wyświetlanie zdj
 	
 }
+
 
 
 
