@@ -36,7 +36,12 @@ if(empty($_SESSION['profilowe']))
 		</div>
 		<div class="w1">
 		<div class="dropd">
-		<button onclick="myFunction()" class="drop"><?php echo $_SESSION['nazwa_uzytkownika'] ." [#". $_SESSION['id'] ."]"; echo "<img src='profilowe/". $_SESSION["profilowe"] ."' width='65px' height='65px' style='float:right'>"; ?></button>
+		<div onclick="myFunction()" class="drop">
+		<?php 
+		echo $_SESSION['nazwa_uzytkownika'];
+		echo '<img class="xd2"  src="profilowe/'. $_SESSION["profilowe"] .'" width="65px" height="65px">';
+		?>
+		</div>
 		<div id="mDropd" class="dropd-cont">
 		<a href="dodawanie.php">Dodaj ofertę</a>
 		<a href="moje_oferty.php">Moje oferty</a>
@@ -56,8 +61,12 @@ if(empty($_SESSION['profilowe']))
 		document.getElementById("mDropd").classList.toggle("show");
 			}
 
-			window.onclick = function(event) {
-			if (!event.target.matches('.drop')) {
+		
+			
+			document.getElementsByClassName(".drop").addEventListener("click", xx);
+			document.getElementsByClassName(".xd2").addEventListener("click", xx);
+			function xx(){
+			
 				var dropdowns = document.getElementsByClassName("dropd-cont");
 				var i;
 				for (i = 0; i < dropdowns.length; i++) {
@@ -66,7 +75,6 @@ if(empty($_SESSION['profilowe']))
 					openDropdown.classList.remove('show');
 						}
 					}
-				}
 			}
 		</script>	
 		<?php else:?>
@@ -90,8 +98,7 @@ if(empty($_SESSION['profilowe']))
 		
 	</div></div>
 	<div id="cont">
-	<div id="kategorie"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
-	<div id="losoferty"><?php
+	<?php
 		
 
 		$con = mysqli_connect('localhost','root','','Veloxis');
@@ -100,7 +107,10 @@ if(empty($_SESSION['profilowe']))
 		if($con->connect_error){
 			echo 'Connection Faild: '.$con->connect_error;
 		}else {
+			
 			if(array_key_exists('bt1', $_POST)) {
+				echo '<div id="kategorie"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>';
+			echo '<div id="losoferty" style="background-color:grey;">';
 			$search_value=$_POST["search"];
 			$sql="select * from oferty where nazwa_oferty like '%$search_value%'";
 			$res=$con->query($sql);
@@ -122,9 +132,54 @@ if(empty($_SESSION['profilowe']))
 			} 
 			}else{echo "Brak takich ofert";}
 			}else{
-				echo "Tutaj bedo oferty promowane lub coś to się dzieje przed wyszukiwaniem więc nawet fajnie";
+				echo '<div id="losoferty" style="width:80%;">';
+				echo '<div class="slider">';
+				echo '<div class="w3-content w3-display-container">';
+
+		
+			
+			$sql='select * from oferty where premium="1"';
+			$res=$con->query($sql);
+			
+			while($row=$res->fetch_assoc()){
+				echo '<div class="mySlides"><div class="imgg"><img height="500" src="oferty/'.$row["nazwa_zdjecia"].'" style="width:100%"></div><div class="dsc"><div class="title">'.$row["nazwa_oferty"].'</div><div class="price">'.$row["cena"].'zł</div><div class="buy">Kup teraz</div></div></div>';
 			}
+			
+		
+
+
+	echo '<button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>';
+	echo '<button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>';
+	echo '</div>';
+		}}
+?>
+		<script>
+
+		window.onload = function(){
+			var button = document.getElementsByClassName('w3-button w3-black w3-display-right')[0];
+			setInterval(function(){button.click();},5000); };
+
+		</script>
+		<script>
+		var slideIndex = 1;
+		showDivs(slideIndex);
+
+		function plusDivs(n) {
+		showDivs(slideIndex += n);
 		}
+
+		function showDivs(n) {
+		let i;
+		let x = document.getElementsByClassName("mySlides");
+		if (n > x.length) {slideIndex = 1}
+		if (n < 1) {slideIndex = x.length}
+		for (i = 0; i < x.length; i++) {
+		x[i].style.display = "none";  
+		}
+		x[slideIndex-1].style.display = "block";  
+		}
+		</script>
+ <?php    echo '</div>';
 ?></div>
 	<div id="adv"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 	</div>
