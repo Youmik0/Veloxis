@@ -256,6 +256,9 @@ input[type=number]
 	font-size:35px;
 	font-weight:bold;
 	width:100%;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
 }
 
 .seller{
