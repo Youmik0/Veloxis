@@ -61,6 +61,20 @@ if(isset($_POST['zmiana_profilowego'])){
 }
 }
 
+if(isset($_POST['premium'])){//Daj premium
+	$data=mysqli_query($db,"SELECT DATE_ADD(CURRENT_TIMESTAMP,INTERVAL 30 DAY)");
+	$rowa=mysqli_fetch_row($data);
+	$dataa=$rowa[0];
+	mysqli_query($db,"INSERT INTO premium(id_uzytkownika,premium_do) VALUES ('$id','$dataa')");
+	$daten=mysqli_query($db,"SELECT id FROM premium WHERE id_uzytkownika='$id'");
+	$rowen=mysqli_fetch_row($daten);
+	$id_premium=$rowen[0];
+	mysqli_query($db,"UPDATE users SET typ_konta='2', id_premium='$id_premium' WHERE nazwa_uzytkownika='$nazwa_uzytkownika'");
+	$_SESSION['typ_konta']='2';
+	//header('location: veloxis.php');
+	}
+
+
 //$sql="SELECT nazwa FROM profilowe WHERE id_uzytkownika='$id'";
 //$result=mysqli_query($db,$sql);
 //$row=mysqli_fetch_row($result);
