@@ -66,6 +66,7 @@ if(isset($_POST['reg_user'])){
 		$_SESSION['haslo']=$haslo;
 		$_SESSION['email']=$email;
 		$_SESSION['typ_konta']=3;
+		$_SESSION['profilowe']="puste.jpg";
 		$sql = "SELECT id FROM users WHERE nazwa_uzytkownika = '$nazwa_uzytkownika'";
 		$result = mysqli_query($db,$sql);
 		while($row = mysqli_fetch_array($result)){
