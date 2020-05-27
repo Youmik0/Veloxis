@@ -14,6 +14,5 @@
 <img src="./profilowe/<?php echo htmlspecialchars($_SESSION['profilowe']); ?>">
 <?php echo $_SESSION['profilowe']; ?>
 <br>
-//<?php echo ($row[0]); ?>
 </body>
 </html>
