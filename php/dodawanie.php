@@ -52,12 +52,13 @@
 	?>
 	</select>
 	<input type="text" name="marka" placeholder="Nazwa marki"/>
-	<INPUT type="file" name="zdjecie">
+	<input type="file" name="zdjecie">
        <button type="submit" class="btn" name="dodawanie_oferty">Dodaj ofertę</button>
     </form>
 	</div>
 	</div>
-	
+	</div>
+	</div>
 <script>
 document.getElementById("i1").addEventListener("click", myFunction);
 
