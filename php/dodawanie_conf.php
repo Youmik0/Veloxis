@@ -9,6 +9,7 @@ $opis="";
 $kategoria="";
 $id_uzytkownika=$_SESSION['id'];
 $cena="";
+$typ_konta=$_SESSION['typ_konta'];
 //
 //Łączenie z bazą
 $db = mysqli_connect('localhost','root','','veloxis');
@@ -29,9 +30,15 @@ if(isset($_POST['dodawanie_oferty'])){
 	if(empty($stan)){array_push($errors,"Proszę podać stan produktu.");}
 	if(empty($marka)){array_push($errors,"Proszę podać markę produktu.");}
 	if(count($errors)==0){	
-	mysqli_query($db,"INSERT INTO oferty(nazwa_oferty,opis,cena,id_kategorii,marka,stan,id_uzytkownika) VALUES('$nazwa','$opis','$cena','$kategoria','$marka','$stan','$id_uzytkownika')");
+	if($typ_konta==2){
+	$premium=1;
+	mysqli_query($db,"INSERT INTO oferty(nazwa_oferty,opis,cena,id_kategorii,marka,stan,id_uzytkownika,premium) VALUES('$nazwa','$opis','$cena','$kategoria','$marka','$stan','$id_uzytkownika','$premium')");
+	}else{
+	$premium=0;
+	mysqli_query($db,"INSERT INTO oferty(nazwa_oferty,opis,cena,id_kategorii,marka,stan,id_uzytkownika,premium) VALUES('$nazwa','$opis','$cena','$kategoria','$marka','$stan','$id_uzytkownika','$premium')");
+	}
 	
-	$sql = "SELECT id FROM oferty WHERE nazwa_oferty='$nazwa' AND opis='$opis' AND cena='$cena' AND id_kategorii='$kategoria' AND id_uzytkownika='$id_uzytkownika'";
+	$sql = "SELECT id FROM oferty WHERE nazwa_oferty='$nazwa' AND opis='$opis' AND cena='$cena' AND id_kategorii='$kategoria' AND id_uzytkownika='$id_uzytkownika' AND premium='$premium'";
 	$result = mysqli_query($db,$sql);
 	$row=mysqli_fetch_row($result);
 	//echo ($row[0]);
@@ -49,6 +56,7 @@ if(isset($_POST['dodawanie_oferty'])){
 	'id_zdjecia'=>$row[0],
 	'kategoria'=>$kategoria,
 	'nazwa_zdjecia'=>$img,
+	'premium'=>$premium,
 	);
 	if(mysqli_query($db,$insert))
 	{
@@ -73,6 +81,7 @@ if(isset($_POST['dodawanie_oferty'])){
 	'id_zdjecia'=>$row[0],
 	'kategoria'=>$kategoria,
 	'nazwa_zdjecia'=>$img,
+	'premium'=>$premium,
 	);
 	mysqli_query($db,$insert2);
 	header('Location: zrob.php?vals=' . urlencode(serialize($array)));
