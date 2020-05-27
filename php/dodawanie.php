@@ -26,12 +26,32 @@
 	   <input type="text" name="cena" placeholder="Cena"/>
 	<select name="kategoria">
 	<option>Wybierz kategorie</option>
-	<option value="1">Elektronika</option>
-	<option value="2">Moda</option>
-	<option value="3">Dom i ogród</option>
-	<option value="4">Kultura i rozrywka</option>
-	<option value="5">Motoryzacja</option>
+	<?php
+		$db = mysqli_connect('localhost','root','','veloxis');
+	$db->set_charset("utf8");
+	$res=mysqli_query($db,"SELECT * FROM kategoria");
+	while($row=mysqli_fetch_array($res)){
+	?>
+	<option value="<?php echo $row["id"]; ?>"><?php echo $row["nazwa"]; ?></option>
+	<?php
+	}
+	?>
 	</select>
+	
+	<select name='stan'>
+	<option value="">Wybierz stan</option>
+	<?php
+	$db = mysqli_connect('localhost','root','','veloxis');
+	$db->set_charset("utf8");
+	$res=mysqli_query($db,"SELECT * FROM stan");
+	while($row=mysqli_fetch_array($res)){
+	?>
+	<option><?php echo $row["nazwa"]; ?></option>
+	<?php 
+	}
+	?>
+	</select>
+	<input type="text" name="marka" placeholder="Nazwa marki"/>
 	<INPUT type="file" name="zdjecie">
        <button type="submit" class="btn" name="dodawanie_oferty">Dodaj ofertę</button>
     </form>
