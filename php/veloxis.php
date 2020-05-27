@@ -8,6 +8,7 @@ if(isset($_GET['logout'])) //Wylogowanie
 	unset($_SESSION['email']);
 	unset($_SESSION['profilowe']);
 	unset($_SESSION['id']);
+	unset($_SESSION['typ_konta']);
 	header("location: veloxis.php");
 }
 if(empty($_SESSION['profilowe']))
@@ -98,23 +99,31 @@ if(empty($_SESSION['profilowe']))
 		$con->set_charset("utf8");
 		if($con->connect_error){
 			echo 'Connection Faild: '.$con->connect_error;
-		}else{
+		}else {
 			if(array_key_exists('bt1', $_POST)) {
 			$search_value=$_POST["search"];
 			$sql="select * from oferty where nazwa_oferty like '%$search_value%'";
 			$res=$con->query($sql);
-	
+			if(mysqli_num_rows($res)!=0){
 			while($row=$res->fetch_assoc()){
 				$id=$row["id"];
 				$base="./show.php";
 				$data = array(
 				'id' => $id
 				);
-				
 				$url = $base . '?' . http_build_query($data);
-				echo '<a href='.$url.'><div class="oferta"><div class="pic"><img src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
+				if($row["premium"]==1){
+					echo '<a href='.$url.'><div class="ofertapromowana"><div class="pic"><img height="116" width="133" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="crpromowane"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
+				}else{
+					echo '<a href='.$url.'><div class="oferta"><div class="pic"><img height="116" width="133" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
+				};
+				
+				
 			} 
-			}else{echo "xd";}
+			}else{echo "Brak takich ofert";}
+			}else{
+				echo "Tutaj bedo oferty promowane lub coś to się dzieje przed wyszukiwaniem więc nawet fajnie";
+			}
 		}
 ?></div>
 	<div id="adv"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
