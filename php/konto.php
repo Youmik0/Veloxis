@@ -66,12 +66,12 @@ if(isset($_POST['reg_user'])){
 		$_SESSION['haslo']=$haslo;
 		$_SESSION['email']=$email;
 		$_SESSION['typ_konta']=3;
-		$_SESSION['profilowe']="puste.jpg";
 		$sql = "SELECT id FROM users WHERE nazwa_uzytkownika = '$nazwa_uzytkownika'";
 		$result = mysqli_query($db,$sql);
 		while($row = mysqli_fetch_array($result)){
 			$_SESSION['id']=$row['id'];
 		}
+		$_SESSION['profilowe']="puste.jpg";
 		$_SESSION['succes']= "Jesteś teraz zalogowany";
 		header('location: veloxis.php');
 		
@@ -112,7 +112,7 @@ if(count($errors)==0){//Jeżeli wszystko poszło dobrze:
 		$sql2="SELECT typ_konta FROM users WHERE nazwa_uzytkownika='$nazwa_uzytkownika'";
 		$result2 = mysqli_query($db,$sql2);
 		$row2=mysqli_fetch_row($result2);
-		$_SESSION['typ_konta']=$row2[0];
+		
 		
 		$sql = "SELECT id FROM users WHERE nazwa_uzytkownika = '$nazwa_uzytkownika'";
 		$result = mysqli_query($db,$sql);
@@ -120,7 +120,14 @@ if(count($errors)==0){//Jeżeli wszystko poszło dobrze:
 			$_SESSION['id']=$row['id'];
 			$id=$_SESSION['id'];
 			
+			
 		}
+		
+		if($row2[0]==2){
+			$sql5="SELECT * FROM premium WHERE id_uzytkownika=";
+		}
+		$_SESSION['typ_konta']=$row2[0];
+		
 		$sql3="SELECT nazwa FROM profilowe WHERE id_uzytkownika='$id'";
 		$result3 = mysqli_query($db,$sql3);
 		$row3=mysqli_fetch_array($result3);
