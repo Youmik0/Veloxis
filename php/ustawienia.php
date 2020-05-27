@@ -14,8 +14,13 @@
 <img src="./profilowe/<?php echo htmlspecialchars($_SESSION['profilowe']); ?>">
 <?php echo $_SESSION['profilowe']; ?>
 <br>
-<form method="post" action="../php/ustawienia.php" ENCTYPE="multipart/form-data">
-<button type="submit" class="btn" name="premium">Uzyskaj premium</button>
-</form>
+<?php
+if($_SESSION['typ_konta']==3){
+
+echo '<form method="post" action="../php/ustawienia.php" ENCTYPE="multipart/form-data">';
+echo '<button type="submit" class="btn" name="premium">Uzyskaj premium</button>';
+echo '</form>';
+};
+?>
 </body>
 </html>
