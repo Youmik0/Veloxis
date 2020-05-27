@@ -1,6 +1,6 @@
 @font-face{
   font-family:'MF';
-  src:url('hw.ttf');
+  src:url('../fonts/hw.ttf');
 }
 
 body{
@@ -8,9 +8,8 @@ body{
 }
 
 #topbar{
-	height:65px;
 	background-color:grey;
-	
+	height:65px;
 }
 #logo{
   text-align:center;
@@ -23,6 +22,7 @@ margin-top:10px;
  }
 
 #menu{
+
 	float:left;
 	width:20%;
 	margin-right:20px;
@@ -33,7 +33,7 @@ margin-top:10px;
 	font-size:30px;
 	padding-top:10px;
 	text-align:center;
-	background-color:#gray;
+	background-color:grey;
 	margin:5px;
 	height:50px;
 	border-radius:10px;
@@ -50,7 +50,7 @@ cursor: pointer;
 }
 
 #addo{
-	background-color:#white;
+	background-color:white;
 	width:78%;
 	float:left;
 	border-radius:10px;
@@ -74,15 +74,6 @@ cursor: pointer;
 [type=text]:focus {
   outline: none;
   border-color: black;
-}
-
-#kat{
-	margin: auto;
-	display: block;
-	font-size: 15px;
-  width: 85%;
-  text-align:left;
-  color: rgba(0,0,0,.4);
 }
 
 [type=submit] {
