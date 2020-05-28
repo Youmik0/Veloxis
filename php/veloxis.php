@@ -97,10 +97,9 @@ if(empty($_SESSION['profilowe']))
 		
 		
 	</div></div>
-	<div id="cont">
+
 	<?php
 		
-
 		$con = mysqli_connect('localhost','root','','Veloxis');
 
 		$con->set_charset("utf8");
@@ -109,8 +108,8 @@ if(empty($_SESSION['profilowe']))
 		}else {
 			
 			if(array_key_exists('bt1', $_POST)) {
-				echo '<div id="kategorie"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>';
-			echo '<div id="losoferty" style="background-color:grey;">';
+				echo '<div id="cont" style="margin-top:20px;"><div id="kategorie"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>';
+			echo '<div id="losoferty" >';
 			$search_value=$_POST["search"];
 			$sql="select * from oferty where nazwa_oferty like '%$search_value%'";
 			$res=$con->query($sql);
@@ -123,17 +122,18 @@ if(empty($_SESSION['profilowe']))
 				);
 				$url = $base . '?' . http_build_query($data);
 				if($row["premium"]==1){
-					echo '<a href='.$url.'><div class="ofertapromowana"><div class="pic"><img height="116" width="133" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="crpromowane"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
+					echo '<a href='.$url.'><div class="ofertapromowana"><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="crpromowane"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
 				}else{
-					echo '<a href='.$url.'><div class="oferta"><div class="pic"><img height="116" width="133" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
+					echo '<a href='.$url.'><div class="oferta" ><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
 				};
 				
 				
 			} 
 			}else{echo "Brak takich ofert";}
 			}else{
-				echo '<div id="losoferty" style="width:80%;">';
+				echo '<div id="cont"><div id="losoferty" style="width:80%;">';
 				echo '<div class="slider">';
+				echo '<h1>Proponowane ofery:</h1>';
 				echo '<div class="w3-content w3-display-container">';
 
 		
@@ -142,7 +142,7 @@ if(empty($_SESSION['profilowe']))
 			$res=$con->query($sql);
 			
 			while($row=$res->fetch_assoc()){
-				echo '<div class="mySlides"><div class="imgg"><img height="500" src="oferty/'.$row["nazwa_zdjecia"].'" style="width:100%"></div><div class="dsc"><div class="title">'.$row["nazwa_oferty"].'</div><div class="price">'.$row["cena"].'zł</div><div class="buy">Kup teraz</div></div></div>';
+				echo '<div class="mySlides"><div class="imgg"><img height="452" src="oferty/'.$row["nazwa_zdjecia"].'" style="width:100%"></div><div class="dsc"><div class="title">'.$row["nazwa_oferty"].'</div><div class="stan">Stan: '.$row["stan"].'</div><div class="marka">Marka: '.$row["marka"].'</div><div class="price">Cena: '.$row["cena"].'zł</div><div class="buy">Kup teraz</div></div></div>';
 			}
 			
 		
@@ -181,7 +181,7 @@ if(empty($_SESSION['profilowe']))
 		</script>
  <?php    echo '</div>';
 ?></div>
-	<div id="adv"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+	<div id="adv"></div>
 	</div>
 	<script>
 	document.getElementById("logo").addEventListener("click", toM);
