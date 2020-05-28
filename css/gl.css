@@ -101,7 +101,7 @@ te::placeholder{
 }
 
 #cont{
-	margin:20px;
+margin:20px;
 	margin-top:75px;
 }	
 
@@ -119,8 +119,6 @@ te::placeholder{
 	width:60%;
 	height:90%;
 	margin-right:20px;
-
-	border-radius:10px;
 }
 
 #adv{
