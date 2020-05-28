@@ -10,6 +10,7 @@ $telefon = "";
 $email = "";
 $haslo1 = "";
 $haslo2 = "";
+
 $errors = array();
 
 
@@ -28,18 +29,37 @@ if(isset($_POST['reg_user'])){
 	$email = mysqli_real_escape_string($db,$_POST['email']);
 	$haslo1= mysqli_real_escape_string($db,$_POST['haslo1']);
 	$haslo2= mysqli_real_escape_string($db,$_POST['haslo2']);
-	
+
 	//Sprawdzanie czy formulaż został wypełniony poprawnie
-	if(empty($nazwa_uzytkownika)){array_push($errors,"Nazwa użytkownika jest wymagana.");}
-	if(empty($imie)){array_push($errors,"Imie jest wymagane.");}
-	if(empty($nazwisko)){array_push($errors,"Nazwisko jest wymagane.");}
-	if(empty($telefon)){array_push($errors,"Telefon jest wymagany.");}
-	if(empty($email)){array_push($errors,"Email jest wymagany.");}
-	if(empty($haslo1)){array_push($errors,"Hasło jest wymagane.");}
+	if(empty($nazwa_uzytkownika)){
+		$_us_error='<p class="err">Nazwa użytkownika jest wymagana.</p>';
+		array_push($errors,"Nazwa użytkownika jest wymagana.");}
+	if(empty($imie)){
+		$_name_error='<p class="err">Imie jest wymagane.</p>';
+		array_push($errors,"Imie jest wymagane.");}
+	if(empty($nazwisko)){
+		$_lastn_error='<p class="err">Nazwisko jest wymagane.</p>';
+		array_push($errors,"Nazwisko jest wymagane.");}
+	if(empty($telefon)){
+		$_phone_error='<p class="err">Telefon jest wymagany.</p>';
+		array_push($errors,"Telefon jest wymagany.");}
+	if(empty($email)){
+		$_mail_error='<p class="err">Email jest wymagany.</p>';
+		array_push($errors,"Email jest wymagany.");}
+	if(empty($haslo1)){
+		$_pas_error='<p class="err">Hasło jest wymagane.</p>';
+		array_push($errors,"Hasło jest wymagane.");}
 	if($haslo1 != $haslo2){
+		$_pass2_error='<p class="err">Dwa hasła się niezgadzają.</p>';
 		array_push($errors,"Dwa hasła się niezgadzają.");
 	}
-	
+	if(!isset($_POST['reg'])){
+		$_reg_error='<p class="err">Pole musi zostać zaakceptowane.</p>';
+		array_push($errors,"Hasło jest wymagane.");}
+		
+	if(!isset($_POST['pozw'])){
+		$_pozw_error='<p class="err">Pole musi zostać zaakceptowane.</p>';
+		array_push($errors,"Hasło jest wymagane.");}
 
 	//Sprawdzenie czy w bazie danych nie istnieje już taki użytkownik
 	$uzytkownik_check_query = "SELECT * FROM users WHERE nazwa_uzytkownika='$nazwa_uzytkownika' OR email='$email' LIMIT 1";
@@ -48,9 +68,11 @@ if(isset($_POST['reg_user'])){
 	
 	if($uzytkownik){ //jeżeli użytkownik istnieje
 		if($uzytkownik['nazwa_uzytkownika'] === $nazwa_uzytkownika){
+			$_usc_error='<p class="err">Taki użytkownik już istnieje.</p>';
 			array_push($errors,"Taki użytkownik już istnieje");
 		}
 		if($uzytkownik['email'] === $email){
+			$_mail2_error='<p class="err">Email już istnieje.</p>';
 			array_push($errors,"Email już istnieje");
 		}
 	}
