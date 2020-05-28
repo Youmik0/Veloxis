@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<div id="topbar"><div id="logo"><a href="../php/veloxis.php">Veloxis</a></div>
+	<div id="topbar"><div id="logo">Veloxis</div>
     
 	</div>
 	<div id="main">
