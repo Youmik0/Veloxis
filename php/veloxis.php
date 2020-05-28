@@ -143,8 +143,9 @@ static $uruchomienie=0;
 			} 
 			}else{echo "Brak takich ofert";}
 			}else{
-				echo '<div id="losoferty" style="width:80%;">';
+echo '<div id="cont"><div id="losoferty" style="width:80%;">';
 				echo '<div class="slider">';
+				echo '<h1>Proponowane ofery:</h1>';
 				echo '<div class="w3-content w3-display-container">';
 
 		
@@ -153,7 +154,7 @@ static $uruchomienie=0;
 			$res=$con->query($sql);
 			
 			while($row=$res->fetch_assoc()){
-				echo '<div class="mySlides"><div class="imgg"><img height="500" src="oferty/'.$row["nazwa_zdjecia"].'" style="width:100%"></div><div class="dsc"><div class="title">'.$row["nazwa_oferty"].'</div><div class="price">'.$row["cena"].'zł</div><div class="buy">Kup teraz</div></div></div>';
+				echo '<div class="mySlides"><div class="imgg"><img height="452" src="oferty/'.$row["nazwa_zdjecia"].'" style="width:100%"></div><div class="dsc"><div class="title">'.$row["nazwa_oferty"].'</div><div class="stan">Stan: '.$row["stan"].'</div><div class="marka">Marka: '.$row["marka"].'</div><div class="price">Cena: '.$row["cena"].'zł</div><div class="buy">Kup teraz</div></div></div>';
 			}
 			
 		
@@ -192,7 +193,7 @@ static $uruchomienie=0;
 		</script>
  <?php    echo '</div>';
 ?></div>
-	<div id="adv"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+	<div id="adv"></div>
 	</div>
 	<script>
 	document.getElementById("logo").addEventListener("click", toM);
