@@ -15,6 +15,7 @@ if(empty($_SESSION['profilowe']))
 {
 	$_SESSION['profilowe']="puste.jpg";
 }
+static $uruchomienie=0;
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +27,9 @@ if(empty($_SESSION['profilowe']))
 <body>
 
 	<div id="topbar"><div id="logo">Veloxis</div>
-	<div id="wyszukaj"><form method="post" action="veloxis.php"><input name="search" type="text" id="te" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button></form></div>
+	<div id="wyszukaj"><form method="get" action="search.php"><input name="search" type="text" id="te" value="<?php if(isset($_POST['search'])) echo $_POST['search'];  ?>" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button>	<input name="kategoria" value='0' type='hidden'><input type="hidden" name="stan" value="0"><input type="hidden" name="marka" value=""><input type="hidden" name="od" value=""><input type="hidden" name="do" value="">
+
+	</form></div>
 	<div id="user">
 	
 	<?php
@@ -97,9 +100,10 @@ if(empty($_SESSION['profilowe']))
 		
 		
 	</div></div>
-
+	<div id="cont">
 	<?php
 		
+
 		$con = mysqli_connect('localhost','root','','Veloxis');
 
 		$con->set_charset("utf8");
@@ -108,10 +112,18 @@ if(empty($_SESSION['profilowe']))
 		}else {
 			
 			if(array_key_exists('bt1', $_POST)) {
-				echo '<div id="cont" style="margin-top:20px;"><div id="kategorie"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>';
-			echo '<div id="losoferty" >';
-			$search_value=$_POST["search"];
+			
+			
+			echo '</select></form><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>';
+			echo '<div id="losoferty" style="background-color:grey;">';
+			//$search_value=$_GET["search"];
+			//$kategoria=$_GET['kategoria'];
+			if($kategoria==0){
 			$sql="select * from oferty where nazwa_oferty like '%$search_value%'";
+			}
+			else{
+			$sql="select * from oferty where nazwa_oferty like '%$search_value%' AND id_kategorii='$kategoria' AND stan='$stan'";
+			}
 			$res=$con->query($sql);
 			if(mysqli_num_rows($res)!=0){
 			while($row=$res->fetch_assoc()){
@@ -122,18 +134,17 @@ if(empty($_SESSION['profilowe']))
 				);
 				$url = $base . '?' . http_build_query($data);
 				if($row["premium"]==1){
-					echo '<a href='.$url.'><div class="ofertapromowana"><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="crpromowane"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
+					echo '<a href='.$url.'><div class="ofertapromowana"><div class="pic"><img height="116" width="133" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="crpromowane"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
 				}else{
-					echo '<a href='.$url.'><div class="oferta" ><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
+					echo '<a href='.$url.'><div class="oferta"><div class="pic"><img height="116" width="133" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
 				};
 				
 				
 			} 
 			}else{echo "Brak takich ofert";}
 			}else{
-				echo '<div id="cont"><div id="losoferty" style="width:80%;">';
+				echo '<div id="losoferty" style="width:80%;">';
 				echo '<div class="slider">';
-				echo '<h1>Proponowane ofery:</h1>';
 				echo '<div class="w3-content w3-display-container">';
 
 		
@@ -142,7 +153,7 @@ if(empty($_SESSION['profilowe']))
 			$res=$con->query($sql);
 			
 			while($row=$res->fetch_assoc()){
-				echo '<div class="mySlides"><div class="imgg"><img height="452" src="oferty/'.$row["nazwa_zdjecia"].'" style="width:100%"></div><div class="dsc"><div class="title">'.$row["nazwa_oferty"].'</div><div class="stan">Stan: '.$row["stan"].'</div><div class="marka">Marka: '.$row["marka"].'</div><div class="price">Cena: '.$row["cena"].'zł</div><div class="buy">Kup teraz</div></div></div>';
+				echo '<div class="mySlides"><div class="imgg"><img height="500" src="oferty/'.$row["nazwa_zdjecia"].'" style="width:100%"></div><div class="dsc"><div class="title">'.$row["nazwa_oferty"].'</div><div class="price">'.$row["cena"].'zł</div><div class="buy">Kup teraz</div></div></div>';
 			}
 			
 		
@@ -181,7 +192,7 @@ if(empty($_SESSION['profilowe']))
 		</script>
  <?php    echo '</div>';
 ?></div>
-	<div id="adv"></div>
+	<div id="adv"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 	</div>
 	<script>
 	document.getElementById("logo").addEventListener("click", toM);
