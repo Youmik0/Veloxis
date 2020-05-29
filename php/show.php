@@ -19,7 +19,7 @@ if(isset($_GET['logout'])) //Wylogowanie
 <body>
 
 	<div id="topbar"><div id="logo">Veloxis</div>
-	<div id="wyszukaj"><form method="post" action="veloxis.php"><input name="search" type="text" id="te" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button></form></div>
+	<div id="wyszukaj"><form method="get" action="search.php"><input name="search" type="text" id="te" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button></div>
 	<div id="user">
 	
 	<?php
@@ -79,6 +79,8 @@ if(isset($_GET['logout'])) //Wylogowanie
 	</div>
 	<div id="cont">
 
+<input name="kategoria" value='0' type='hidden'><input type="hidden" name="stan" value="0"><input type="hidden" name="marka" value=""><input type="hidden" name="od" value=""><input type="hidden" name="do" value="">
+</form>
 	<div id="showof">
 	
 	<div class="slider">
@@ -94,6 +96,7 @@ if(isset($_GET['logout'])) //Wylogowanie
 		}else{
 			if(array_key_exists('id', $_GET)) {
 			$search_value=$_GET['id'];
+			$id=$_GET['id'];
 			$sql='select * from oferty where id="'.$search_value.'"';
 			$res=$con->query($sql);
 			
@@ -143,12 +146,13 @@ if(isset($_GET['logout'])) //Wylogowanie
 			
 			while($row=$res->fetch_assoc()){
 				$search_value=$row["id_uzytkownika"];
-				echo '<div class="title">'.$row["nazwa_oferty"].'</div>';
+				echo '<form method="get" action="zglos.php"><button class=button2 name="zglos">Zgłoś</button><input type="hidden" name="id_oferty" value="'. $id .'"></form><div class="title">'.$row["nazwa_oferty"].'</div>';
+				$nazwa_oferty=$row["nazwa_oferty"];
 			} 
 	
 			$sql='select * from users where id="'.$search_value.'"';
 			$res=$con->query($sql);
-	
+			$row3=$res->fetch_assoc();
 			while($row=$res->fetch_assoc()){
 				
 				echo '<div class="seller">od sprzedawcy '.$row["nazwa_uzytkownika"].'</div>';
@@ -158,10 +162,20 @@ if(isset($_GET['logout'])) //Wylogowanie
 			$search_value=$_GET['id'];
 			$sql='select * from oferty where id="'.$search_value.'"';
 			$res=$con->query($sql);
+			
+			
+			
+			
 	
 			while($row=$res->fetch_assoc()){
+			$array = array(
+			'nazwa'=>$row["nazwa_oferty"],
+			'cena'=>$row["cena"],
+			'sprzedawca'=>$row3["nazwa_uzytkownika"],
+			'id_oferty'=>$id,
+			);
 				
-				echo '<div class="price">'.$row["cena"].'zł</div><div class="deli">Dostawa:</div><div class="quantity">Liczba sztuk <br/><input type="number" min="1" max="9" step="1" value="1"><br/> &nbsp; ze </div><div class="buy">Kup teraz</div>';
+				echo '<div class="price">'.$row["cena"].'zł</div><div class="deli">Dostawa:</div><div class="quantity">Liczba sztuk <br/><input type="number" min="1" max="9" step="1" value="1"><br/> &nbsp; ze </div><div class="buy"><a href="kup.php?vals='. urlencode(serialize($array)) .'">Kup teraz</a></div>';
 			} 
 			}
 		}
@@ -256,5 +270,13 @@ if(isset($_GET['logout'])) //Wylogowanie
 	}
 	</script>
 </body>
-
+<?php
+if(isset($_POST['zglos'])){
+	$array = array(
+	'id'=>$_GET['id'],
+	'nazwa'=>$nazwa_oferty,
+	);
+	header('Location: zglos.php?vals=' . urlencode(serialize($array)));
+}
+?>
 </html>
