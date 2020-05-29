@@ -21,14 +21,16 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 <!DOCTYPE html>
 <html>
 <head>
+
   <meta charset="UTF-8">
   <title>Veloxis</title>
-  <link rel="stylesheet" href="../css/gl.css">
+  <link rel="stylesheet" href="../css/mo.css">
 </head>
 <body>
 
 	<div id="topbar"><div id="logo">Veloxis</div>
-	<div id="wyszukaj">Moje oferty</div>
+	<div id="wyszukaj"><form method="get" action="search.php"><input name="search" type="text" id="te" value="<?php if(isset($_POST['search'])) echo $_POST['search'];  ?>" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button>	<input name="kategoria" value='0' type='hidden'><input type="hidden" name="stan" value="0"><input type="hidden" name="marka" value=""><input type="hidden" name="od" value=""><input type="hidden" name="do" value="">
+	</div>
 	<div id="user">
 	
 	<?php
@@ -38,7 +40,12 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 		</div>
 		<div class="w1">
 		<div class="dropd">
-		<button onclick="myFunction()" class="drop"><?php echo $_SESSION['nazwa_uzytkownika'] ." [#". $_SESSION['id'] ."]"; echo "<img src='profilowe/". $_SESSION["profilowe"] ."' width='65px' height='65px' style='float:right'>";?></button>
+		<div onclick="myFunction()" class="drop">
+		<?php 
+		echo $_SESSION['nazwa_uzytkownika'];
+		echo '<img class="xd2"  src="profilowe/'. $_SESSION["profilowe"] .'" width="65px" height="65px">';
+		?>
+		</div>
 		<div id="mDropd" class="dropd-cont">
 		<a href="dodawanie.php">Dodaj ofertę</a>
 		<a href="moje_oferty.php">Moje oferty</a>
@@ -58,8 +65,12 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 		document.getElementById("mDropd").classList.toggle("show");
 			}
 
-			window.onclick = function(event) {
-			if (!event.target.matches('.drop')) {
+		
+			
+			document.getElementsByClassName(".drop").addEventListener("click", xx);
+			document.getElementsByClassName(".xd2").addEventListener("click", xx);
+			function xx(){
+			
 				var dropdowns = document.getElementsByClassName("dropd-cont");
 				var i;
 				for (i = 0; i < dropdowns.length; i++) {
@@ -68,7 +79,6 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 					openDropdown.classList.remove('show');
 						}
 					}
-				}
 			}
 		</script>	
 		<?php else:?>
@@ -91,45 +101,39 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 		
 		
 	</div></div>
-	<div id="cont">
-	<div id="kategorie"><a href="dodawanie.php">Dodanie oferty</a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
-	<div id="losoferty"><?php
+	<div id="cont" style="margin-top:20px;">
+	<?php
 		
-		$raz=1;
-		$raz2=1;
+
 		$con = mysqli_connect('localhost','root','','Veloxis');
 
 		$con->set_charset("utf8");
 		if($con->connect_error){
 			echo 'Connection Faild: '.$con->connect_error;
-		}else{
-			
+		}else {
+			$raz=1;
+		$raz2=1;
 			$search_value=$_SESSION['id'];
 			$sql="select * from oferty where id_uzytkownika like '%$search_value%'";
+			echo '<h1>Moje Oferty:</h1>';
 			$res=$con->query($sql);
-			if (mysqli_num_rows($res)==0)
-			{
-				echo '<br>Brak ofert<br><br><br><br><br><br><br><br><br><br><br><br>';
-			}
-			else{
+			if(mysqli_num_rows($res)!=0){
 			while($row=$res->fetch_assoc()){
 				$id=$row["id"];
-				$nazwa=$row["nazwa_oferty"];
 				$base="./show.php";
 				$data = array(
 				'id' => $id
 				);
-				
+				echo '<div class="cc">';
 				$url = $base . '?' . http_build_query($data);
-				//echo "<img src='oferty/". $row["nazwa_zdjecia"] ."'>"; //Wyswietla zdjecie
 				if($row["premium"]==1){
-					echo '<a href='.$url.'><div class="ofertapromowana"><div class="pic"><img height="116" width="133" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="crpromowane"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
+					echo '<a href='.$url.'><div class="ofertapromowana"><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="crpromowane"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
 				}else{
-					echo '<a href='.$url.'><div class="oferta"><div class="pic"><img height="116" width="133" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit">'.$row["nazwa_oferty"].'</div><div class="pric">'.$row["cena"].'</div></div></div></a>';
+					echo '<a href='.$url.'><div class="oferta" ><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
 				};
-				echo '<form method="post" action="../php/moje_oferty.php" ENCTYPE="multipart/form-data"><input type="file" name="zdjecie"><button type="submit" name="dodaj" value='.$id.'>Dodaj zdjęcie</button></form>';
-				echo '<form method="post" action="../php/moje_oferty.php"><button type="submit" name="usun" value='.$id.'>Usuń ofertę</button></form>';
-				
+				echo '<div class="aa"><form method="post" action="../php/moje_oferty.php" ENCTYPE="multipart/form-data"><input type="file" name="zdjecie"><button type="submit" name="dodaj" value='.$id.'>Dodaj zdjęcie</button></form></div>';
+				echo '<div class="bb"><form method="post" action="../php/moje_oferty.php"><button type="submit" class="usun"  name="usun" value='.$id.'>Usuń ofertę</button></form></div>';
+				echo '</div>';
 				if($raz==1){
 				if(isset($_POST['dodaj'])){
 					$raz=0;
@@ -174,10 +178,38 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 			
 			}
 				
-				}
+			} else{echo  '<h1 style="text-align:center;">Brak takich ofert</h1>';}
+			}
+?>
+		<script>
+
+		window.onload = function(){
+			var button = document.getElementsByClassName('w3-button w3-black w3-display-right')[0];
+			setInterval(function(){button.click();},5000); };
+
+		</script>
+		<script>
+		var slideIndex = 1;
+		showDivs(slideIndex);
+
+		function plusDivs(n) {
+		showDivs(slideIndex += n);
 		}
+
+		function showDivs(n) {
+		let i;
+		let x = document.getElementsByClassName("mySlides");
+		if (n > x.length) {slideIndex = 1}
+		if (n < 1) {slideIndex = x.length}
+		for (i = 0; i < x.length; i++) {
+		x[i].style.display = "none";  
+		}
+		x[slideIndex-1].style.display = "block";  
+		}
+		</script>
+ <?php    echo '</div>';
 ?></div>
-	<div id="adv"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+
 	</div>
 	<script>
 	document.getElementById("logo").addEventListener("click", toM);
