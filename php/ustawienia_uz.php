@@ -17,9 +17,9 @@ $id=$_SESSION['id'];
 
 if(isset($_POST['change_pass'])){//Pozyskanie danych z okienka do logowania
 	
-	$haslo1 = mysqli_real_escape_string($db,$_POST['haslo1']);
-	$haslo_nowe1 = mysqli_real_escape_string($db,$_POST['haslo_nowe1']);
-	$haslo_nowe2 = mysqli_real_escape_string($db,$_POST['haslo_nowe2']);
+	//$haslo1 = mysqli_real_escape_string($db,$_POST['haslo1']);
+	$haslo_nowe1 = $_POST['haslo_nowe1'];
+	$haslo_nowe2 = $_POST['haslo_nowe2'];
 	
 
 	if(empty($haslo_nowe1)){//Sprawdzenie czy nie puste haslo
@@ -36,7 +36,7 @@ if(isset($_POST['change_pass'])){//Pozyskanie danych z okienka do logowania
 	$query=mysqli_query($db,"UPDATE users SET haslo='$haslo_zakodowane' WHERE nazwa_uzytkownika='$nazwa_uzytkownika'");
 	$_SESSION['msg1']="Hasło zmienione";
 	
-	//header('location: veloxis.php');
+	header('location: veloxis.php');
 	}
 }
 
