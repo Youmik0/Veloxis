@@ -1,0 +1,367 @@
+@font-face{
+  font-family:'MF';
+  src: url('../fonts/hw.ttf');
+}
+
+body{
+  background-color:#1a1a1a;
+}
+
+#topbar{
+	height:65px;
+	background-color:grey;
+}
+#logo{
+  text-align:center;
+  float:left;
+  font-size:50px;
+  font-family:'MF';
+  width:25%;
+  cursor:pointer;
+}
+
+#wyszukaj{
+  padding-top:10px;
+  float:left;
+  text-align:center;
+  width:50%;
+  margin:auto;
+}
+
+#user{
+  background-color:white;
+  float:left;
+  width:25%;
+  height:65px;
+}
+
+#te{
+  width:75%;
+  height:40px;
+  font-size:15px;
+  float:left;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color:white;
+  
+}
+te::placeholder{
+  color: white;
+  opacity: 1;
+}
+#te:focus{
+  float:left;
+  outline:none;
+  color:grey;
+}
+.w1{
+	width:50%;
+	  height:65px;
+	float:left;
+}
+
+.w1:first-child{
+	background-color:grey;
+}
+#rej{
+	padding-top:15px;
+	cursor:pointer;
+	text-align:center;
+	width:50%;
+	height:50px;
+	float:left;
+	font-size:25px;
+}
+#rej:hover{
+	background-color:gray;
+}
+#log{
+	padding-top:15px;
+	font-size:25px;
+	cursor:pointer;
+	text-align:center;
+	width:50%;
+	height:50px;
+	float:left;
+}
+#log:hover{
+	background-color:gray;
+}
+.bt{
+	margin-top:2px;
+	height:42px;
+	width:50px;
+	font-size:30px;
+	outline:none;
+	background-color:white;
+	border:gray;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	float:left;
+	cursor: pointer;
+}
+
+#cont{
+margin:20px;
+	margin-top:75px;
+}	
+
+#kategorie{
+	float:left;
+	width:20%;
+	height:90%;
+	margin-right:20px;
+	background-color:grey;
+	border-radius:10px;
+}
+
+#losoferty{
+	float:left;
+	width:60%;
+	height:90%;
+	margin-right:20px;
+}
+
+#adv{
+	float:left;
+	width:17%;
+	min-height:563px;
+	background-color:red;
+
+}	
+
+
+
+.drop{
+	text-align:center;
+	height:42px;
+  width:200px;
+  padding-top:23px;
+  background-color: #3498DB;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.drop:hover, .drop:focus {
+  background-color: #2980B9;
+}
+
+.dropd {
+  position: relative;
+  display: inline-block;
+  
+}
+
+.dropd-cont {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropd-cont a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+   border-bottom: 1px solid rgba(0,0,0,.4);
+}
+
+.dropd a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+.oferta{
+float:left;
+max-width:1000px;
+height:133px;
+background-color:grey;
+border-bottom:1px solid rgba(0,0,0,.4);
+margin-bottom:10px;
+}
+.pic{
+	height:133px;
+	min-width:128px;
+	float:left;
+	
+}
+.cr{
+	float:left;
+	
+}
+.tit{
+overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	font-size:30px;
+padding-left:10px;
+	min-height:67px;
+	width:700px;
+}
+
+.pric{
+margin-top:29px;
+padding-left:10px;
+	font-size:25px;
+	min-height:49px;
+	position:absolute;
+	
+}
+
+.xd2{
+
+	margin-top:-23px;
+	float:right;
+}
+
+
+.ofertapromowana{
+	float:left;
+max-width:1000px;
+height:133px;
+background-color:gray;
+border-bottom:1px solid rgba(0,0,0,.4);
+margin-bottom:10px;
+	background-image: url("../img/gwiazdki.jpg");
+}
+
+
+
+a{
+	text-decoration:none;
+	color:black;
+}
+
+
+.w3-display-container{position:relative}
+.w3-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+.w3-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}  
+.w3-button:disabled{cursor:not-allowed;opacity:0.3}.w3-disabled *,:disabled *{pointer-events:none}
+.w3-display-left{position:absolute;margin-top:20%;left:0%;transform:translate(0%,-50%);-ms-transform:translate(-0%,-50%)}
+.w3-display-right{position:absolute;margin-top:20%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
+.w3-black,.w3-hover-black:hover{color:#fff!important;background-color:#000!important}
+
+
+.slider{
+	
+	background-color:white;
+	padding:25px;
+	float:left;
+	width:90%;
+	margin-left:30px;
+	min-height:300px;
+	padding-top:0px;
+
+}
+
+.imgg{
+	width:70%;
+	float:left;
+}
+
+.dsc{
+	padding-top:209px;
+	width:30%;
+	float:left;
+}
+
+.title{
+	padding:20px;
+	padding-bottom:10px;
+	font-size:35px;
+	font-weight:bold;
+	width:88%;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+
+
+.price{
+	padding:20px;
+	padding-bottom:12px;
+	font-size:35px;
+	width:90%;
+}
+.buy{
+	padding:5px;
+	padding-top:7px;
+	margin-top:20px;
+	margin-left:20px;
+	background-color:#ff9900;
+	color:white;
+	width:90%;
+	font-size:25px;
+	min-height:35px;
+	text-align:center;
+}
+
+.stan{
+	padding-left:20px;
+	width:45%;
+	padding-bottom:15px;
+	float:left;
+	height:40px;
+}
+
+.marka{
+	height:40px;
+	width:45%;
+padding-bottom:15px;
+	float:left;
+}
+
+.stan1{
+	padding-left:10px;
+padding-right:20px;
+	float:left;
+	padding-bottom:15px;
+}
+
+.marka1{
+	padding-bottom:15px;
+	float:left;
+}
+
+.crpromowane{
+	float:left;
+
+}
+
+.aa{
+	
+	padding-top:50px;
+	text-align:center;
+	background-color:white;
+	float:left;
+	width:200px;
+	height:83px;
+}
+
+.bb{
+	padding-left:10px;
+	padding-top:40px;
+	text-align:center;
+	background-color:white;
+	float:left;
+	width:190px;
+	height:93px;
+}
+.cc{
+	margin-left:118px;
+
+}
+
+h1{
+	margin-left:118px;
+	color:white;
+}
+.usun{
+	border:none;
+	min-height:50px;
+	background-color: red;
+}
