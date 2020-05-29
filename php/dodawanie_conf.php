@@ -23,12 +23,16 @@ if(isset($_POST['dodawanie_oferty'])){
 	$cena=$_POST['cena'];
 	$stan=$_POST['stan'];
 	$marka=$_POST['marka'];
-	if(empty($nazwa)){array_push($errors,"Nazwa aukcji jest wymagana.");}
+	if(empty($nazwa)){
+			$_nz_error='<p class="err">Nazwa aukcji jest wymagana.</p>';
+		array_push($errors,"Nazwa aukcji jest wymagana.");}
 	if(empty($opis)){$opis=NULL;}
-	if(empty($kategoria)){array_push($errors,"Musisz wybrać kategorię produktu.");}
-	if(empty($cena)){array_push($errors,"Proszę podać cenę produktu.");}
-	if(empty($stan)){array_push($errors,"Proszę podać stan produktu.");}
-	if(empty($marka)){array_push($errors,"Proszę podać markę produktu.");}
+	if(empty($kategoria)){
+		$_kt_error='<p class="err">Kategoria jest wymagana..</p>';array_push($errors,"Musisz wybrać kategorię produktu.");}
+	if(empty($cena)){$_cn_error='<p class="err">Cena produktu jest wymagana.</p>';array_push($errors,"Proszę podać cenę produktu.");}
+	if(empty($stan)){	$_st_error='<p class="err">Stan produktu jest wymagany.</p>';array_push($errors,"Proszę podać stan produktu.");}
+	if(empty($marka)){$_mkr_error='<p class="err">Marka produktu jest wymagana.</p>';
+	array_push($errors,"Proszę podać markę produktu.");}
 	if(count($errors)==0){	
 	if($typ_konta==2){
 	$premium=1;
@@ -94,23 +98,6 @@ if(isset($_POST['dodawanie_oferty'])){
 	//if (mysqli_num_rows($result) != 0) { $row = mysqli_fetch_assoc($result); echo base64_decode($row['zdjecie']); }  Wyświetlanie zdj
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
