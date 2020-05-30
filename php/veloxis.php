@@ -154,7 +154,7 @@ echo '<div id="cont"><div id="losoferty" style="width:80%;">';
 			$res=$con->query($sql);
 			
 			while($row=$res->fetch_assoc()){
-				echo '<div class="mySlides"><div class="imgg"><img height="452" src="oferty/'.$row["nazwa_zdjecia"].'" style="width:100%"></div><div class="dsc"><div class="title">'.$row["nazwa_oferty"].'</div><div class="stan">Stan: '.$row["stan"].'</div><div class="marka">Marka: '.$row["marka"].'</div><div class="price">Cena: '.$row["cena"].'zł</div><div class="buy">Kup teraz</div></div></div>';
+				echo '<div class="mySlides"><div class="imgg"><img height="452" src="oferty/'.$row["nazwa_zdjecia"].'" style="width:100%"></div><div class="dsc"><div class="title">'.$row["nazwa_oferty"].'</div><div class="stan">Stan: '.$row["stan"].'</div><div class="marka">Marka: '.$row["marka"].'</div><div class="price">Cena: '.$row["cena"].'zł</div><a href="../php/show.php?id='.$row["id"].'"><div class="buy">Zobacz ofertę</div></a></div></div>';
 			}
 			
 		
