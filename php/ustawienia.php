@@ -1,4 +1,3 @@
-
 <?php include('ustawienia_uz.php') ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +10,7 @@
 <body>
 
 	<div id="topbar"><div id="logo">Veloxis</div>
-	<div id="wyszukaj"><form method="get" action="search.php"><input name="search" type="text" id="te" value="<?php if(isset($_POST['search'])) echo $_POST['search'];  ?>" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button>	<input name="kategoria" value='0' type='hidden'><input type="hidden" name="stan" value="0"><input type="hidden" name="marka" value=""><input type="hidden" name="od" value=""><input type="hidden" name="do" value="">
+	<div id="wyszukaj"><form method="get" action="search.php"><input name="search" type="text" id="te" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button>	<input name="kategoria" value='0' type='hidden'><input type="hidden" name="stan" value="0"><input type="hidden" name="marka" value=""><input type="hidden" name="od" value=""><input type="hidden" name="do" value=""></form>
 	</div>
 	<div id="user">
 	
@@ -97,20 +96,19 @@
 			<div id="csd">
 					
 					<div class="zmiana_hasla">
+					<?php include('errors.php'); ?>
 					<p>Zmiana hasla:</p>
-					<div class="f1"><form method="post" action="../php/ustawienia.php">
-					<input type="text" name="haslo_nowe1" placeholder="Podaj nowe hasło: "></br></br>
-					<input type="text" name="haslo_nowe2" placeholder="Powtórz nowe hasło: "></div>
+					<div class="f1"><form method="post" action="../php/ustawienia.php" ENCTYPE="multipart/form-data">
+					<input type="text" name="haslo_nowe1" pattern=".{8,}" title="8 lub więcej znaków" placeholder="Podaj nowe hasło: "></br></br>
+					<input type="text" name="haslo_nowe2" pattern=".{8,}" title="8 lub więcej znaków" placeholder="Powtórz nowe hasło: "></div>
 					<button style="margin-left:35px;" type="submit" class="btn" name="change_pass">Zmień hasło</button>
-					</form>
 					</div>
 					
 					<div class="zmiana_ava">
 					<p>Zmień avatar:</p>
-					<div class="f1"><form method="post" action="../php/ustawienia.php" ENCTYPE="multipart/form-data">
+					<div class="f1">
 					<input type="file" name="zdjecie">
 					<button type="submit"  class="btn" name="zmiana_profilowego">Zmień zdjecie profilowe</button>
-					</form>
 					
 					</div></div>
 					
@@ -120,21 +118,20 @@
 					<input type="text" name="miejscowosc" placeholder="Podaj nową miejscowosc: "></br></br>
 					<input type="text" name="ulica" placeholder="Podaj nową ulice: "></br></br>
 					<input type="text" name="nr_domu" placeholder="Podaj nowy nr. domu: "></br></br>
-					<input type="text" name="kod" placeholder="Podaj nowy kod pocztowy "></br>
+					<input type="text" name="kod" placeholder="Podaj nowy kod pocztowy" pattern="[0-9]{2}[-]{1}[0-9]{3}" title="Kod pocztowy wymagany w następującym formacie NP: 12-345" ></br>
 					<button type="submit" style="margin-left:35px;" class="btn" name="zmiana_danych">Zmień dane</button>
-					</form>
 					</div>
 					<div class="zmiana_telefonu">
+					
 					<p>Zmień nr. telefonu</p>
-					<input type="number" name="nr_tel" placeholder="Podaj nowy nr. telefonu "></br>
+					<input type="text" name="nr_tel" pattern="[0-9]{9}" title="Potrzebne jest 9 cyfr" placeholder="Podaj nowy nr. telefonu "></br>
 					
 					<button type="submit" style="margin-left:35px;" class="btn" name="zmiana_nr">Zmień numer</button>
-					</form>
 					
 					</div>
 					<div class="zmiana_konta">
 					<p>Zmień nr. konta bankowego</p>
-					<input type="number" name="nr_konta" placeholder="Podaj nowy nr. konta bankowego "></br>
+					<input type="text" name="nr_konta" pattern=".{26}" title="Wymagane 26 liczb" placeholder="Podaj nowy nr. konta bankowego "></br>
 					
 					<button type="submit" style="margin-left:35px;" class="btn" name="zmiana_nr_konta">Zmień numer</button>
 					</form>
