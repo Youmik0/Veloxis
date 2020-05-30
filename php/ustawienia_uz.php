@@ -51,12 +51,14 @@ if(isset($_POST['zmiana_profilowego'])){
 		move_uploaded_file($_FILES['zdjecie']['tmp_name'],"profilowe/$img");
 		echo "<script>alert('Zdjęcie zostało dodane do folderu')</script>";
 		$_SESSION['profilowe']=$img;
+		header('location: veloxis.php');
 	}
 	else{
 		mysqli_query($db,$update);
 		move_uploaded_file($_FILES['zdjecie']['tmp_name'],"profilowe/$img");
 		echo "<script>alert('Zdjęcie zostało dodane do folderu')</script>";
 		$_SESSION['profilowe']=$img;
+		header('location: veloxis.php');
 	}
 }
 }
@@ -72,7 +74,54 @@ if(isset($_POST['premium'])){//Daj premium
 	mysqli_query($db,"UPDATE users SET typ_konta='2', id_premium='$id_premium' WHERE nazwa_uzytkownika='$nazwa_uzytkownika'");
 	mysqli_query($db,"UPDATE oferty SET premium='1' WHERE id_uzytkownika='$id'");
 	$_SESSION['typ_konta']='2';
-	//header('location: veloxis.php');
+	header('location: veloxis.php');
+	}
+	
+	if(isset($_POST['zmiana_danych'])){
+		$miejscowosc=$_POST['miejscowosc'];
+		$ulica=$_POST['ulica'];
+		$nr_domu=$_POST['nr_domu'];
+		$kod=$_POST['kod'];
+		if(empty($miejscowosc)){
+		array_push($errors,"Pole miejscowość nie może być puste.");
+		}
+		if(empty($ulica)){
+		array_push($errors,"Pole ulica nie może być puste.");
+		}
+		if(empty($nr_domu)){
+		array_push($errors,"Pole nr domu nie może być puste.");
+		}
+		if(empty($kod)){
+		array_push($errors,"Pole kod pocztowy nie może być puste.");
+		}
+		
+		if(count($errors)==0){
+			mysqli_query($db,"UPDATE users SET miasto='$miejscowosc', ulica='$ulica', nr_zamieszkania='$nr_domu', kod_pocztowy='$kod' WHERE nazwa_uzytkownika='$nazwa_uzytkownika'");
+		}
+	}
+
+if(isset($_POST['zmiana_nr'])){
+		$nr_tel=$_POST['nr_tel'];
+
+		if(empty($nr_tel)){
+		array_push($errors,"Pole nr telefonu nie może być puste.");
+		}
+		
+		if(count($errors)==0){
+			mysqli_query($db,"UPDATE users SET telefon='$nr_tel' WHERE nazwa_uzytkownika='$nazwa_uzytkownika'");
+		}
+	}
+	
+	if(isset($_POST['zmiana_nr_konta'])){
+		$nr_konta=$_POST['nr_konta'];
+
+		if(empty($nr_konta)){
+		array_push($errors,"Pole nr konta nie może być puste.");
+		}
+		
+		if(count($errors)==0){
+			mysqli_query($db,"UPDATE users SET nr_bankowy='$nr_konta' WHERE nazwa_uzytkownika='$nazwa_uzytkownika'");
+		}
 	}
 
 
