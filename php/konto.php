@@ -29,6 +29,11 @@ if(isset($_POST['reg_user'])){
 	$email = mysqli_real_escape_string($db,$_POST['email']);
 	$haslo1= mysqli_real_escape_string($db,$_POST['haslo1']);
 	$haslo2= mysqli_real_escape_string($db,$_POST['haslo2']);
+	$miejscowosc = mysqli_real_escape_string($db,$_POST['miejscowosc']);
+	$nr_domu = mysqli_real_escape_string($db,$_POST['nr_domu']);
+	$kod_po = mysqli_real_escape_string($db,$_POST['kod_po']);
+	$numer_bank = mysqli_real_escape_string($db,$_POST['numer_bank']);
+	$ulica = mysqli_real_escape_string($db,$_POST['ulica']);
 
 	//Sprawdzanie czy formulaż został wypełniony poprawnie
 	if(empty($nazwa_uzytkownika)){
@@ -60,6 +65,24 @@ if(isset($_POST['reg_user'])){
 	if(!isset($_POST['pozw'])){
 		$_pozw_error='<p class="err">Pole musi zostać zaakceptowane.</p>';
 		array_push($errors,"Hasło jest wymagane.");}
+		
+		
+	if(!isset($_POST['miejscowosc'])){
+		$_m_error='<p class="err">Pole musi zostać zaakceptowane.</p>';
+		array_push($errors,"Nazwa miejscowości jest wymagana.");}
+		
+	if(!isset($_POST['nr_domu'])){
+		$_n_error='<p class="err">Pole musi zostać zaakceptowane.</p>';
+		array_push($errors,"Numer domu/mieszkania jest wymagany.");}
+	if(!isset($_POST['kod_po'])){
+		$_k_error='<p class="err">Pole musi zostać zaakceptowane.</p>';
+		array_push($errors,"Kod pocztowy jest wymagany.");}
+	if(!isset($_POST['numer_bank'])){
+		$_b_error='<p class="err">Pole musi zostać zaakceptowane.</p>';
+		array_push($errors,"Numer konta bankowego jest wymagany.");}
+	if(!isset($_POST['ulica'])){
+		$_u_error='<p class="err">Pole musi zostać zaakceptowane.</p>';
+		array_push($errors,"Nazwa ulicy jest wymagana.");}
 
 	//Sprawdzenie czy w bazie danych nie istnieje już taki użytkownik
 	$uzytkownik_check_query = "SELECT * FROM users WHERE nazwa_uzytkownika='$nazwa_uzytkownika' OR email='$email' LIMIT 1";
@@ -81,8 +104,8 @@ if(isset($_POST['reg_user'])){
 	if(count($errors)==0){
 		$haslo = md5($haslo1);//Szyfrowanie hasla przed zapisaniem do bazy
 		
-		$query = "INSERT INTO users (nazwa_uzytkownika, imie, nazwisko, telefon, email, haslo)
-				  VALUES('$nazwa_uzytkownika', '$imie', '$nazwisko', '$telefon', '$email', '$haslo')";
+		$query = "INSERT INTO users (nazwa_uzytkownika, imie, nazwisko, telefon, email, haslo ,miasto, ulica, nr_zamieszkania, nr_bankowy, kod_pocztowy)
+				  VALUES('$nazwa_uzytkownika', '$imie', '$nazwisko', '$telefon', '$email', '$haslo', '$miejscowosc', '$ulica', '$nr_domu', '$numer_bank', '$kod_po')";
 		mysqli_query($db,$query);
 		$_SESSION['nazwa_uzytkownika']=$nazwa_uzytkownika;
 		$_SESSION['haslo']=$haslo;
