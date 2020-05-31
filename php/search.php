@@ -171,7 +171,7 @@ if(empty($_SESSION['profilowe']))
 			echo '</select><br><br>';
 			echo 'Cena: <br>Od:<input type="text" name="od" placeholder="0.00zł"/><br>Do:<input type="text" name="do" placeholder="0.00zł"/><br><br><center><button name="bt1">Wyszukaj</button></center></form><br><br></div>';
 			echo '<div id="losoferty">';
-			$sql="select * from oferty where nazwa_oferty like '%$search_value%'";
+			$sql="select * from oferty where nazwa_oferty like '%$search_value%' AND aktywna='1'";
 			if($kategoria!=0){
 				$sql .= " AND id_kategorii='$kategoria'";
 			}
