@@ -29,7 +29,7 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 <body>
 
 	<div id="topbar"><div id="logo">Veloxis</div>
-	<div id="wyszukaj"><form method="get" action="search.php"><input name="search" type="text" id="te" value="<?php if(isset($_POST['search'])) echo $_POST['search'];  ?>" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button>	<input name="kategoria" value='0' type='hidden'><input type="hidden" name="stan" value="0"><input type="hidden" name="marka" value=""><input type="hidden" name="od" value=""><input type="hidden" name="do" value="">
+	<div id="wyszukaj"><form method="get" action="search.php"><input name="search" type="text" id="te" value="<?php if(isset($_POST['search'])) echo $_POST['search'];  ?>" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button>	<input name="kategoria" value='0' type='hidden'><input type="hidden" name="stan" value="0"><input type="hidden" name="marka" value=""><input type="hidden" name="od" value=""><input type="hidden" name="do" value=""></form>
 	</div>
 	<div id="user">
 	
@@ -103,7 +103,7 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 	</div></div>
 	<div id="cont" style="margin-top:20px;">
 	<?php
-		
+		echo '<form method="get" action="moje_oferty.php"><button name="mo" class="c" >Aktywne oferty</button><button name="zk" class="t" >Zakończone oferty</button></form>';
 
 		$con = mysqli_connect('localhost','root','','Veloxis');
 
@@ -111,11 +111,14 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 		if($con->connect_error){
 			echo 'Connection Faild: '.$con->connect_error;
 		}else {
+			
+			if(!isset($_GET['zk'])){	
+		
 			$raz=1;
 		$raz2=1;
 			$search_value=$_SESSION['id'];
-			$sql="select * from oferty where id_uzytkownika like '%$search_value%'";
-			echo '<h1>Moje Oferty:</h1>';
+			$sql="select * from oferty where id_uzytkownika like '%$search_value%' and aktywna=1";
+			echo '</br></br><h1>Moje Aktywne Oferty:</h1>';
 			$res=$con->query($sql);
 			if(mysqli_num_rows($res)!=0){
 			while($row=$res->fetch_assoc()){
@@ -179,7 +182,47 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 			}
 				
 			} else{echo  '<h1 style="text-align:center;">Brak takich ofert</h1>';}
+			}else{
+			
+			//$search_value=$_SESSION['nazwa_uzytkownika'];
+			//$sql='select * from transakcje where sprzedawca = "'.$search_value.'"';
+			echo '</br></br><h1 style="margin-left:260px;">Moje Zakończone Oferty:</h1>';
+			$sv=$_SESSION['nazwa_uzytkownika'];
+			$sq='select * from transakcje where sprzedawca = "'.$sv.'"';
+			$re=$con->query($sq);
+			if(mysqli_num_rows($re)!=0){
+			while($ro=$re->fetch_assoc()){
+			$search_value=$ro['id_oferty'];
+			$sql='select * from oferty where id = "'.$search_value.'"';
+			$res=$con->query($sql);
+			if(mysqli_num_rows($res)!=0){
+			while($row=$res->fetch_assoc()){
+				$id=$row["id"];
+				$base="./show.php";
+				$data = array(
+				'id' => $id
+				);
+				echo '<div class="cc">';
+				$url = $base . '?' . http_build_query($data);
+				if($row["premium"]==1){
+					echo '<a href='.$url.'><div class="ofertapromowana" ><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="crpromowane"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
+					echo '<div class="kupujacy"><h2>Kupił:</h2>'.$ro['imie_nazwisko_k'].' z dostawą: '.$ro['dostawa'].' do '.$ro['adres_k'].'</div>';
+				}else{
+					echo '<div class="assd"><a href='.$url.'><div class="oferta" ><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a></div>';
+						echo '<div class="kupujacy" ><h2>Kupił:</h2>'.$ro['imie_nazwisko_k'].' z dostawą: '.$ro['dostawa'].' do '.$ro['adres_k'].'</div>';
+				}
+			
+			echo "</div>";
 			}
+			
+			}
+		
+			}
+			
+			
+			}
+			}
+		}
 ?>
 		<script>
 
