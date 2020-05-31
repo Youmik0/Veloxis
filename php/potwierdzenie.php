@@ -16,6 +16,26 @@ $dostawa=$Values['dostawa'];
 $typ_konta=$_SESSION['typ_konta'];
 $id_oferty=$Values['id_oferty'];
 
+$sql2="SELECT * FROM users WHERE nazwa_uzytkownika='$nazwa_uzytkownika'";
+$res2=mysqli_query($db,$sql2);
+$row2=mysqli_fetch_assoc($res2);
+$sql3="SELECT * FROM users WHERE nazwa_uzytkownika='$sprzedawca'";
+$res3=mysqli_query($db,$sql3);
+$row3=mysqli_fetch_assoc($res3);
+$nr_bankowy_k=$row2["nr_bankowy"];
+$nr_bankowy_s=$row3["nr_bankowy"];
+$miasto_k=$row2["miasto"];
+$miasto_s=$row3["miasto"];
+$ulica_k=$row2["ulica"];
+$ulica_s=$row3["ulica"];
+$nr_zamieszkania_k=$row2["nr_zamieszkania"];
+$nr_zamieszkania_s=$row3["nr_zamieszkania"];
+$kod_pocztowy_k=$row2["kod_pocztowy"];
+$kod_pocztowy_s=$row3["kod_pocztowy"];
+$adres_k=$miasto_k . ', ' . $ulica_k . ', ' . $nr_zamieszkania_k . ', ' . $kod_pocztowy_k;
+$adres_s=$miasto_s . ', ' . $ulica_s . ', ' . $nr_zamieszkania_s . ', ' . $kod_pocztowy_s;
+
+
 if($dostawa==1){
 	$dost="Odbiór w punkcie";
 	$koszt_przesylki=10;
@@ -44,10 +64,35 @@ if($typ_konta==2){
 			$cena_dostawy2=$_POST['cena_dostawy'];
 			$cena_koncowa2=$_POST['cena_koncowa'];
 			$kupujacy2=$_POST['kupujacy'];
-			$nr_bankowy2=$_POST['nr_bankowy'];
 			$id_oferty2=$_POST['id_oferty'];
-			$sql="INSERT INTO transakcje( nazwa, cena, sprzedawca, dostawa, cena_dostawy, cena_koncowa, kupujacy, nr_bankowy_k, id_oferty) VALUES ('$nazwa2','$cena2','$sprzedawca2','$dostawa2','$cena_dostawy2','$cena_koncowa2','$kupujacy2','$nr_bankowy2','$id_oferty2')";
+			$sql2="SELECT * FROM users WHERE nazwa_uzytkownika='$nazwa_uzytkownika'";
+			$res2=mysqli_query($db,$sql2);
+			$row2=mysqli_fetch_assoc($res2);
+			$sql3="SELECT * FROM users WHERE nazwa_uzytkownika='$sprzedawca2'";
+			$res3=mysqli_query($db,$sql3);
+			$row3=mysqli_fetch_assoc($res3);
+			$nr_bankowy_k=$row2["nr_bankowy"];
+			$nr_bankowy_s=$row3["nr_bankowy"];
+			$miasto_k=$row2["miasto"];
+			$miasto_s=$row3["miasto"];
+			$ulica_k=$row2["ulica"];
+			$ulica_s=$row3["ulica"];
+			$nr_zamieszkania_k=$row2["nr_zamieszkania"];
+			$nr_zamieszkania_s=$row3["nr_zamieszkania"];
+			$kod_pocztowy_k=$row2["kod_pocztowy"];
+			$kod_pocztowy_s=$row3["kod_pocztowy"];
+			$imie_k=$row2["imie"];
+			$imie_s=$row3["imie"];
+			$nazwisko_k=$row2["nazwisko"];
+			$nazwisko_s=$row2["nazwisko"];
+			$adres_k=$miasto_k . ', ' . $ulica_k . ', ' . $nr_zamieszkania_k . ', ' . $kod_pocztowy_k;
+			$adres_s=$miasto_s . ', ' . $ulica_s . ', ' . $nr_zamieszkania_s . ', ' . $kod_pocztowy_s;
+			$imie_nazwisko_k=$imie_k . ' ' . $nazwisko_k;
+			$imie_nazwisko_s=$imie_s . ' ' . $nazwisko_s;
+			$sql="INSERT INTO transakcje( nazwa, cena, sprzedawca, dostawa, cena_dostawy, cena_koncowa, kupujacy, nr_bankowy_k, id_oferty, nr_bankowy_s, adres_s, adres_k, imie_nazwisko_k, imie_nazwisko_s) VALUES ('$nazwa2','$cena2','$sprzedawca2','$dostawa2','$cena_dostawy2','$cena_koncowa2','$kupujacy2','$nr_bankowy_k','$id_oferty2','$nr_bankowy_s','$adres_s','$adres_k','$imie_nazwisko_k','$imie_nazwisko_s')";
 			mysqli_query($db,$sql);
+			$sql4="UPDATE oferty SET aktywna=0 WHERE id='$id_oferty2'";
+			mysqli_query($db,$sql4);
 			header('Location: veloxis.php');
 		}
 		
@@ -72,10 +117,10 @@ $cena_koncowa=$koszt_przesylki+$cena;
 	Od sprzedawcy: <strong><?php echo $sprzedawca; ?></strong><br><br>
 	Opcja dostawy: <strong><?php echo $dost; ?></strong><br><br>
 	Koszt tej przesyłki: <strong><?php echo $koszt_przesylki; ?> zł</strong><br><br>
-	Twój Nr.Bankowy: <strong><?php echo 'Nr banku'; ?></strong><br><br>
-	Twój Adres: <strong><?php echo 'Adres'; ?></strong><br><br>
-	Nr. Bankowy sprzedającego : <strong><?php echo 'Nr.bankowy sprzedającego'; ?></strong><br><br>
-	Adres Sprzedzającego: <strong><?php echo 'Adres sprzedającego'; ?></strong><br><br>
+	Twój Nr.Bankowy: <strong><?php echo $nr_bankowy_k; ?></strong><br><br>
+	Twój Adres: <strong><?php echo $adres_k; ?></strong><br><br>
+	Nr. Bankowy sprzedającego : <strong><?php echo $nr_bankowy_s; ?></strong><br><br>
+	Adres Sprzedzającego: <strong><?php echo $adres_s; ?></strong><br><br>
 	Koszt ostateczny: <strong><?php echo $cena_koncowa; ?> zł</strong><br><br>
 	<form method="post" action="potwierdzenie.php">
 	<input type="hidden" name="nazwa" value="<?php echo $nazwa; ?>">
