@@ -365,3 +365,31 @@ h1{
 	min-height:50px;
 	background-color: red;
 }
+
+.c{
+	margin-left:150px;
+	height:42px;
+	width:150px;
+	font-size:15px;
+	background-color:white;
+	border:gray;
+	float:left;
+	cursor: pointer;
+}
+
+.t{
+	height:42px;
+	width:150px;
+	font-size:15px;
+	background-color:white;
+	border:gray;
+	float:left;
+	cursor: pointer;
+}
+
+.kupujacy{
+	background-color:white;
+	height:133px;
+	min-width:500px;
+margin-right:118px;;
+}
