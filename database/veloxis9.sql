@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 31 Maj 2020, 17:48
+-- Czas generowania: 31 Maj 2020, 18:22
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.3
 
@@ -219,17 +219,20 @@ CREATE TABLE `transakcje` (
   `id_oferty` int(11) NOT NULL,
   `nr_bankowy_s` varchar(26) COLLATE utf8_polish_ci NOT NULL,
   `adres_s` varchar(200) COLLATE utf8_polish_ci NOT NULL,
-  `adres_k` varchar(200) COLLATE utf8_polish_ci NOT NULL
+  `adres_k` varchar(200) COLLATE utf8_polish_ci NOT NULL,
+  `imie_nazwisko_k` varchar(200) COLLATE utf8_polish_ci NOT NULL,
+  `imie_nazwisko_s` varchar(200) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `transakcje`
 --
 
-INSERT INTO `transakcje` (`id`, `nazwa`, `cena`, `sprzedawca`, `dostawa`, `cena_dostawy`, `cena_koncowa`, `kupujacy`, `nr_bankowy_k`, `id_oferty`, `nr_bankowy_s`, `adres_s`, `adres_k`) VALUES
-(1, 'Allah', 1111, 'Awa', 'Odbiór w punkcie za pobraniem', 12, 1123, 'Weeb', '666', 5, '', '', ''),
-(2, 'Sprzedam Dupe', 200, 'Awa', 'Odbiór w punkcie', 10, 210, 'Weeb', '666', 4, '', '', ''),
-(3, 'Oferta', 234, 'Weeb', 'Odbiór w punkcie za pobraniem', 12, 246, 'Weeb', '666', 1, '', '', '');
+INSERT INTO `transakcje` (`id`, `nazwa`, `cena`, `sprzedawca`, `dostawa`, `cena_dostawy`, `cena_koncowa`, `kupujacy`, `nr_bankowy_k`, `id_oferty`, `nr_bankowy_s`, `adres_s`, `adres_k`, `imie_nazwisko_k`, `imie_nazwisko_s`) VALUES
+(1, 'Allah', 1111, 'Awa', 'Odbiór w punkcie za pobraniem', 12, 1123, 'Weeb', '666', 5, '', '', '', '', ''),
+(2, 'Sprzedam Dupe', 200, 'Awa', 'Odbiór w punkcie', 10, 210, 'Weeb', '666', 4, '', '', '', '', ''),
+(3, 'Oferta', 234, 'Weeb', 'Odbiór w punkcie za pobraniem', 12, 246, 'Weeb', '666', 1, '', '', '', '', ''),
+(4, 'Hans 1 - Bez premium', 123, 'Hans', 'Odbiór w punkcie', 10, 133, 'Weeb', '11111111111111111111111111', 7, '0', ', , , ', 'Zielona góra, Ulica JP, ćwiartki3/4, 22-345', 'Weeb Weeb', 'Hans Weeb');
 
 -- --------------------------------------------------------
 
@@ -407,7 +410,7 @@ ALTER TABLE `stan`
 -- AUTO_INCREMENT dla tabeli `transakcje`
 --
 ALTER TABLE `transakcje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
