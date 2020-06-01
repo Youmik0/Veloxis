@@ -22,7 +22,7 @@
 	<?php
 		if(isset($_SESSION['nazwa_uzytkownika'])): ?>
 		
-		<div class="w1">
+		<div class="w1">&nbsp</div>
 		</div>
 		<div class="w1">
 		<div class="dropd">
