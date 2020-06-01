@@ -17,6 +17,25 @@ if(empty($_SESSION['profilowe']))
 if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie masz dostępu do tej strony
 	header('location: veloxis.php');
 }
+$id=$_SESSION['id'];
+$nazwa_uzytkownika=$_SESSION['nazwa_uzytkownika'];
+$db = mysqli_connect('localhost','root','','veloxis');
+
+$db->set_charset("utf8");
+
+if(isset($_POST['premium'])){//Daj premium
+	$data=mysqli_query($db,"SELECT DATE_ADD(CURRENT_TIMESTAMP,INTERVAL 30 DAY)");
+	$rowa=mysqli_fetch_row($data);
+	$dataa=$rowa[0];
+	mysqli_query($db,"INSERT INTO premium(id_uzytkownika,premium_do) VALUES ('$id','$dataa')");
+	$daten=mysqli_query($db,"SELECT id FROM premium WHERE id_uzytkownika='$id'");
+	$rowen=mysqli_fetch_row($daten);
+	$id_premium=$rowen[0];
+	mysqli_query($db,"UPDATE users SET typ_konta='2', id_premium='$id_premium' WHERE nazwa_uzytkownika='$nazwa_uzytkownika'");
+	mysqli_query($db,"UPDATE oferty SET premium='1' WHERE id_uzytkownika='$id'");
+	$_SESSION['typ_konta']='2';
+	header('location: veloxis.php');
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +48,7 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 <body>
 
 	<div id="topbar"><div id="logo">Veloxis</div>
-	<div id="wyszukaj"><form method="get" action="search.php"><input name="search" type="text" id="te" value="<?php if(isset($_POST['search'])) echo $_POST['search'];  ?>" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button>	<input name="kategoria" value='0' type='hidden'><input type="hidden" name="stan" value="0"><input type="hidden" name="marka" value=""><input type="hidden" name="od" value=""><input type="hidden" name="do" value="">
+	<div id="wyszukaj"><form method="get" action="search.php"><input name="search" type="text" id="te" value="<?php if(isset($_POST['search'])) echo $_POST['search'];  ?>" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button>	<input name="kategoria" value='0' type='hidden'><input type="hidden" name="stan" value="0"><input type="hidden" name="marka" value=""><input type="hidden" name="od" value=""><input type="hidden" name="do" value=""></form>
 	</div>
 	<div id="user">
 	
@@ -50,6 +69,11 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 		<a href="dodawanie.php">Dodaj ofertę</a>
 		<a href="moje_oferty.php">Moje oferty</a>
 		<a href="ustawienia.php">Ustawienia</a>
+		<?php
+		$typ_konta=$_SESSION['typ_konta'];
+		if($typ_konta==3): ?>
+		<a href ="premium.php">Kup premium</a>
+		<?php endif; ?>
 		<?php
 		$typ_konta=$_SESSION['typ_konta'];
 		if($typ_konta==1): ?>
@@ -120,16 +144,16 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 			while($row=$res->fetch_assoc()){
 				
 				
-				if($row['typ_konta']!=3){
+				if($row['typ_konta']==3){
 				echo'<div id="premium">
 	
 					<div id="logoo">Veloxis</div>
 					<div id="pod">Premium</div>
 					<div class="oh"><p style="font-size:20px;">Po zakupie w ramach premium otrzymujemy przez miesiąc:</p>&#8226;Darmowe dostawy </br></br>&#8226;Promowanie wystawionych produktów</br></br> za jedyne <b>35zł</b></div>
 	
-					<form method="post" action="logowanie.php">
+					<form method="post" action="premium.php">
 	
-					<button type="submit" class="btn" name="login_user">Kup teraz</button>
+					<button type="submit" class="btn" name="premium">Kup teraz</button>
 					</form>
 
 				</div>';
@@ -141,10 +165,7 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 					<div id="pod">&nbsp;Premium</div>
 					<div class="oh"><p style="font-size:20px;">Po zakupie w ramach premium otrzymujemy przez miesiąc:</p>&#8226;Darmowe dostawy </br></br>&#8226;Promowanie wystawionych produktów</br></br> za jedyne <b>35zł</b></div>
 	
-					<form method="post" action="logowanie.php">
-	
-					<button type="submit" class="btn" name="login_user">Przedłuż subskrybcje</button>
-					</form>
+					
 
 				</div>';
 					
