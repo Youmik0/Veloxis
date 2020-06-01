@@ -17,34 +17,49 @@ if(isset($_GET['logout'])) //Wylogowanie
   <link rel="stylesheet" href="../css/show.css">
 </head>
 <body>
+<div id="topbar"><div id="logo">Veloxis</div>
+	<div id="wyszukaj"><form method="get" action="search.php"><input name="search" type="text" id="te" value="<?php if(isset($_POST['search'])) echo $_POST['search'];  ?>" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button>	<input name="kategoria" value='0' type='hidden'><input type="hidden" name="stan" value="0"><input type="hidden" name="marka" value=""><input type="hidden" name="od" value=""><input type="hidden" name="do" value="">
 
-	<div id="topbar"><div id="logo">Veloxis</div>
-	<div id="wyszukaj"><form method="get" action="search.php"><input name="search" type="text" id="te" placeholder="Czego szukasz?"><button name="bt1" class="bt" >&#x2315;</button></div>
+	</form></div>
 	<div id="user">
 	
 	<?php
 		if(isset($_SESSION['nazwa_uzytkownika'])): ?>
 		
-		<div class="w1">
-		</div>
+		<div class="w1">&nbsp</div>
 		<div class="w1">
 		<div class="dropd">
-		<button onclick="myFunction()" class="drop"><?php echo $_SESSION['nazwa_uzytkownika'] ." [#". $_SESSION['id'] ."]"; ?></button>
+		<div onclick="myFunction()" class="drop">
+		<?php 
+		echo $_SESSION['nazwa_uzytkownika'];
+		echo '<img class="xd2"  src="profilowe/'. $_SESSION["profilowe"] .'" width="65px" height="65px">';
+		?>
+		</div>
 		<div id="mDropd" class="dropd-cont">
 		<a href="dodawanie.php">Dodaj ofertę</a>
+		<a href="moje_oferty.php">Moje oferty</a>
 		<a href="ustawienia.php">Ustawienia</a>
+		<?php
+		$typ_konta=$_SESSION['typ_konta'];
+		if($typ_konta==1): ?>
+		<a href="admin.php">Admin tools</a>
+		<?php endif; ?>
 		<a href="veloxis.php?logout='1'">Wyloguj</a>
 		</div>
 		</div>
-		</div>
+		</div></div></div>
 		<script>
 
 		function myFunction() {
 		document.getElementById("mDropd").classList.toggle("show");
 			}
 
-			window.onclick = function(event) {
-			if (!event.target.matches('.drop')) {
+		
+			
+			document.getElementsByClassName(".drop").addEventListener("click", xx);
+			document.getElementsByClassName(".xd2").addEventListener("click", xx);
+			function xx(){
+			
 				var dropdowns = document.getElementsByClassName("dropd-cont");
 				var i;
 				for (i = 0; i < dropdowns.length; i++) {
@@ -53,12 +68,9 @@ if(isset($_GET['logout'])) //Wylogowanie
 					openDropdown.classList.remove('show');
 						}
 					}
-				}
 			}
 		</script>	
-		<?php else:?>
-		<div id="rej">Zarejestruj</div>
-		<div id="log">Zaloguj</div>
+	
 		<script>
 		document.getElementById("rej").addEventListener("click", zRej);
 
@@ -75,8 +87,7 @@ if(isset($_GET['logout'])) //Wylogowanie
 		<?php endif; ?>
 		
 		
-	</div>
-	</div>
+	</div></div>
 	<div id="cont">
 
 	<div id="showof">
