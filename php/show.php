@@ -26,7 +26,8 @@ if(isset($_GET['logout'])) //Wylogowanie
 	<?php
 		if(isset($_SESSION['nazwa_uzytkownika'])): ?>
 		
-		<div class="w1">&nbsp</div>
+		<div class="w1">
+		</div>
 		<div class="w1">
 		<div class="dropd">
 		<div onclick="myFunction()" class="drop">
@@ -41,13 +42,18 @@ if(isset($_GET['logout'])) //Wylogowanie
 		<a href="ustawienia.php">Ustawienia</a>
 		<?php
 		$typ_konta=$_SESSION['typ_konta'];
+		if($typ_konta==3): ?>
+		<a href ="premium.php">Kup premium</a>
+		<?php endif; ?>
+		<?php
+		$typ_konta=$_SESSION['typ_konta'];
 		if($typ_konta==1): ?>
 		<a href="admin.php">Admin tools</a>
 		<?php endif; ?>
 		<a href="veloxis.php?logout='1'">Wyloguj</a>
 		</div>
 		</div>
-		</div></div></div>
+		</div>
 		<script>
 
 		function myFunction() {
@@ -70,7 +76,9 @@ if(isset($_GET['logout'])) //Wylogowanie
 					}
 			}
 		</script>	
-	
+		<?php else:?>
+		<div id="rej">Zarejestruj</div>
+		<div id="log">Zaloguj</div>
 		<script>
 		document.getElementById("rej").addEventListener("click", zRej);
 
