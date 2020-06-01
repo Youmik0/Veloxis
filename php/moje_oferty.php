@@ -206,10 +206,10 @@ if(!isset($_SESSION['nazwa_uzytkownika'])){  //Jeżeli nie jestes zalogowany nie
 				$url = $base . '?' . http_build_query($data);
 				if($row["premium"]==1){
 					echo '<a href='.$url.'><div class="ofertapromowana" ><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="crpromowane"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
-					echo '<div class="kupujacy"><h2>Kupił:</h2>'.$ro['imie_nazwisko_k'].' z dostawą: '.$ro['dostawa'].' do '.$ro['adres_k'].'</div>';
+					echo '<div class="kupujacy"><h2>Kupił:'.$ro['imie_nazwisko_k'].'</h2> (Nazwa użytkownika: '. $ro['kupujacy'] .')<br> z dostawą: '.$ro['dostawa'].' do '.$ro['adres_k'].'</div>';
 				}else{
 					echo '<div class="assd"><a href='.$url.'><div class="oferta" ><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a></div>';
-						echo '<div class="kupujacy" ><h2>Kupił:</h2>'.$ro['imie_nazwisko_k'].' z dostawą: '.$ro['dostawa'].' do '.$ro['adres_k'].'</div>';
+						echo '<div class="kupujacy" ><h2>Kupił:'.$ro['imie_nazwisko_k'].'</h2> (Nazwa użytkownika: '. $ro['kupujacy'] .')<br> z dostawą: '.$ro['dostawa'].' do '.$ro['adres_k'].'</div>';
 				}
 			
 			echo "</div>";
