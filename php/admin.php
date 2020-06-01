@@ -164,6 +164,11 @@ if($typ_konta!=1) //Jeżeli nie jesteś adminem nie masz dostępu.
 		<a href="ustawienia.php">Ustawienia</a>
 		<?php
 		$typ_konta=$_SESSION['typ_konta'];
+		if($typ_konta==3): ?>
+		<a href ="premium.php">Kup premium</a>
+		<?php endif; ?>
+		<?php
+		$typ_konta=$_SESSION['typ_konta'];
 		if($typ_konta==1): ?>
 		<a href="admin.php">Admin tools</a>
 		<?php endif; ?>
