@@ -22,7 +22,8 @@
 	<?php
 		if(isset($_SESSION['nazwa_uzytkownika'])): ?>
 		
-		<div class="w1">&nbsp</div>
+		<div class="w1">
+		</div>
 		<div class="w1">
 		<div class="dropd">
 		<div onclick="myFunction()" class="drop">
@@ -35,6 +36,11 @@
 		<a href="dodawanie.php">Dodaj ofertę</a>
 		<a href="moje_oferty.php">Moje oferty</a>
 		<a href="ustawienia.php">Ustawienia</a>
+		<?php
+		$typ_konta=$_SESSION['typ_konta'];
+		if($typ_konta==3): ?>
+		<a href ="premium.php">Kup premium</a>
+		<?php endif; ?>
 		<?php
 		$typ_konta=$_SESSION['typ_konta'];
 		if($typ_konta==1): ?>
