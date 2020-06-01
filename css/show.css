@@ -1,6 +1,6 @@
 @font-face{
   font-family:'MF';
-  src:url('hw.ttf');
+  src:url('../fonts/hw.ttf');
 }
 
 body{
@@ -17,6 +17,7 @@ body{
   font-size:50px;
   font-family:'MF';
   width:25%;
+  cursor:pointer;
 }
 
 #wyszukaj{
@@ -87,7 +88,7 @@ te::placeholder{
 }
 .bt{
 	margin-top:2px;
-	height:44px;
+	height:42px;
 	width:50px;
 	font-size:30px;
 	outline:none;
@@ -99,24 +100,14 @@ te::placeholder{
 	cursor: pointer;
 }
 
-#cont{
-width:100%;
-
-}	
-
-
-#showof{
-	width:80%;
-	margin:auto;
-	margin-top:30px;
-}
 
 .drop{
-  height:65px;
+	text-align:center;
+	height:42px;
   width:200px;
+  padding-top:23px;
   background-color: #3498DB;
   color: white;
-  padding: 16px;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -152,6 +143,23 @@ width:100%;
 .dropd a:hover {background-color: #ddd;}
 
 .show {display: block;}
+
+.xd2{
+
+	margin-top:-23px;
+	float:right;
+}
+
+
+#showof{
+	width:80%;
+	margin:auto;
+	margin-top:30px;
+}
+a{
+	text-decoration:none;
+	color:white;
+}
 
 
 .w3-display-container{position:relative}
@@ -306,14 +314,15 @@ input[type=number]
 
 
 .button2{
+	position:absolute;
 	background-color: #f44336;
 	border: none;
 	color: white;
 	padding: 10px 24px;
 	text-align: center;
 	text-decoration: none;
-	display: inline-block;
+margin-left:580px;
 	font-size: 10px;
 	border-radius: 12px;
-	float:right;
+
 }
