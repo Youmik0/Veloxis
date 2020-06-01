@@ -79,8 +79,6 @@ if(isset($_GET['logout'])) //Wylogowanie
 	</div>
 	<div id="cont">
 
-<input name="kategoria" value='0' type='hidden'><input type="hidden" name="stan" value="0"><input type="hidden" name="marka" value=""><input type="hidden" name="od" value=""><input type="hidden" name="do" value="">
-</form>
 	<div id="showof">
 	
 	<div class="slider">
@@ -97,11 +95,11 @@ if(isset($_GET['logout'])) //Wylogowanie
 			if(array_key_exists('id', $_GET)) {
 			$search_value=$_GET['id'];
 			$id=$_GET['id'];
-			$sql='select * from oferty where id="'.$search_value.'"';
+			$sql='select * from oferty_zdj where id_oferty="'.$search_value.'"';
 			$res=$con->query($sql);
 			
 			while($row=$res->fetch_assoc()){
-				echo '<img height="300" class="mySlides" src="oferty/'.$row["nazwa_zdjecia"].'" style="width:100%">';
+				echo '<img height="300" class="mySlides" src="oferty/'.$row["nazwa"].'" style="width:100%">';
 			}
 			}
 		}
@@ -145,19 +143,20 @@ if(isset($_GET['logout'])) //Wylogowanie
 			$res=$con->query($sql);
 			
 			while($row=$res->fetch_assoc()){
-				$search_value=$row["id_uzytkownika"];
+				$sv=$row["id_uzytkownika"];
 				echo '<form method="get" action="zglos.php"><button class=button2 name="zglos">Zgłoś</button><input type="hidden" name="id_oferty" value="'. $id .'"></form><div class="title">'.$row["nazwa_oferty"].'</div>';
 				$nazwa_oferty=$row["nazwa_oferty"];
 			} 
-	
-			$sql='select * from users where id="'.$search_value.'"';
+			$search_value=$_GET['id'];
+			$sql='select users.nazwa_uzytkownika from oferty left join users on oferty.id_uzytkownika=users.id where oferty.id="'.$search_value.'"';
 			$res=$con->query($sql);
-			$row3=$res->fetch_assoc();
+			
 			while($row=$res->fetch_assoc()){
 				
 				echo '<div class="seller">od sprzedawcy '.$row["nazwa_uzytkownika"].'</div>';
 			} 
-			
+			$res=$con->query($sql);
+			$row3=$res->fetch_assoc();
 			
 			$search_value=$_GET['id'];
 			$sql='select * from oferty where id="'.$search_value.'"';
@@ -175,53 +174,23 @@ if(isset($_GET['logout'])) //Wylogowanie
 			'id_oferty'=>$id,
 			);
 				
-				echo '<div class="price">'.$row["cena"].'zł</div><div class="deli">Dostawa:</div><div class="quantity">Liczba sztuk <br/><input type="number" min="1" max="9" step="1" value="1"><br/> &nbsp; ze </div><div class="buy"><a href="kup.php?vals='. urlencode(serialize($array)) .'">Kup teraz</a></div>';
+				echo '<div class="price">'.$row["cena"].'zł</div><div class="deli">Dostawa:</br><div style="font-size:13px;">- Kurier - 13zł (Premium - 0zł)</br>
+	- Kurier za pobraniem - 15zł (Premium - 0zł)</br>
+	- Przesyłka priorytetowa za pobraniem - 10zł (Premium - 0zł)</br>
+	- Przesyłka priorytetowa - 8zł (Premium - 0zł)</br>
+	- Odbiór osobisty - 0zł</div></div><a href="kup.php?vals='. urlencode(serialize($array)) .'"><div class="buy">Kup teraz</div></a>';
 			} 
 			}
 		}
-		
-		
-		
+
 ?>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script>    jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
-    jQuery('.quantity').each(function() {
-      var spinner = jQuery(this),
-        input = spinner.find('input[type="number"]'),
-        btnUp = spinner.find('.quantity-up'),
-        btnDown = spinner.find('.quantity-down'),
-        min = input.attr('min'),
-        max = input.attr('max');
 
-      btnUp.click(function() {
-        var oldValue = parseFloat(input.val());
-        if (oldValue >= max) {
-          var newVal = oldValue;
-        } else {
-          var newVal = oldValue + 1;
-        }
-        spinner.find("input").val(newVal);
-        spinner.find("input").trigger("change");
-      });
-
-      btnDown.click(function() {
-        var oldValue = parseFloat(input.val());
-        if (oldValue <= min) {
-          var newVal = oldValue;
-        } else {
-          var newVal = oldValue - 1;
-        }
-        spinner.find("input").val(newVal);
-        spinner.find("input").trigger("change");
-      });
-
-    });</script>
 	</div>
 	
 
 	
-	<div class="parameters"><h1>Parametry:</h1>	<?php
+	<div class="parameters" style="padding-left:20px;padding-bottom:20px;padding-right:20px;"><h1>Parametry:</h1>	<?php
 		
 
 		$con = mysqli_connect('localhost','root','','Veloxis');
@@ -230,14 +199,20 @@ if(isset($_GET['logout'])) //Wylogowanie
 		if($con->connect_error){
 			echo 'Connection Faild: '.$con->connect_error;
 		}else{
+			if(array_key_exists('id', $_GET)) {
+			$search_value=$_GET['id'];
+			$sql='select * from oferty where id="'.$search_value.'"';
+			$res=$con->query($sql);
 			
-			echo $_GET['id'];
-	
+			while($row=$res->fetch_assoc()){
+				echo '<b>Marka: </b>'.$row['marka'].'    &nbsp&nbsp&nbsp &nbsp &nbsp &nbsp   <b>Stan: </b>'.$row['stan'];
+			}
+			}
 		}
 		
 ?></div>
 
-	<div class="description">
+	<div class="description"  style="padding-left:20px;padding-bottom:20px;padding-right:20px;">
 	<h1>Opis:</h1>
 	<?php
 		
@@ -254,6 +229,7 @@ if(isset($_GET['logout'])) //Wylogowanie
 			$res=$con->query($sql);
 			
 			while($row=$res->fetch_assoc()){
+				echo '<b>'.$row["nazwa_oferty"].'</b></br></br>';
 				echo $row["opis"];
 			}
 			}
