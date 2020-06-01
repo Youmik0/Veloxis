@@ -37,17 +37,17 @@ $adres_s=$miasto_s . ', ' . $ulica_s . ', ' . $nr_zamieszkania_s . ', ' . $kod_p
 
 
 if($dostawa==1){
-	$dost="Odbiór w punkcie";
-	$koszt_przesylki=10;
-}else if($dostawa==2){
 	$dost="Kurier";
 	$koszt_przesylki=13;
-}else if($dostawa==3){
-	$dost="Odbiór w punkcie za pobraniem";
-	$koszt_przesylki=12;
-}else if($dostawa==4){
+}else if($dostawa==2){
 	$dost="Kurier za pobraniem";
 	$koszt_przesylki=15;
+}else if($dostawa==3){
+	$dost="Przesyłka priorytetowa za pobraniem";
+	$koszt_przesylki=10;
+}else if($dostawa==4){
+	$dost="Przesyłka priorytetowa";
+	$koszt_przesylki=8;
 }else{
 	$dost="Odbiór osobisty";
 	$koszt_przesylki=0;
