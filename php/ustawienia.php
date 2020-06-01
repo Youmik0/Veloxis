@@ -101,7 +101,7 @@
 			<div id="csd">
 					
 					<div class="zmiana_hasla">
-					<?php include('errors.php'); ?>
+					<div class="errr" style="color:red;"><?php include('errors.php'); ?></div>
 					<p>Zmiana hasla:</p>
 					<div class="f1"><form method="post" action="../php/ustawienia.php" ENCTYPE="multipart/form-data">
 					<input type="text" name="haslo_nowe1" pattern=".{8,}" title="8 lub więcej znaków" placeholder="Podaj nowe hasło: "></br></br>
