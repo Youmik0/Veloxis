@@ -46,10 +46,10 @@ $id_oferty=$Values['id_oferty'];
 	Kosztuje: <strong><?php echo $cena; ?> zł.</strong><br><br>
 	Od sprzedawcy: <strong><?php echo $sprzedawca; ?></strong><br><br>
 	Opcja dostawy: <form method="post" action="kup.php"><select name="wysylka">
-	<option value="1">Odbiór w punkcie - 10zł</option>
-	<option value="2">Kurier - 13zł</option>
-	<option value="3">Odbiór w punkcie za pobraniem - 12zł</option>
-	<option value="4">Kurier za pobraniem - 15zł</option>
+	<option value="1">Kurier - 13zł</option>
+	<option value="2">Kurier za pobraniem - 15zł</option>
+	<option value="3">Przesyłka priorytetowa za pobraniem - 10zł</option>
+	<option value="4">Przesyłka priorytetowa - 8zł</option>
 	<option value="5">Odbiór osobisty - 0zł</option>
 	</select>
 	<input type="hidden" name="nazwa" value="<?php echo $nazwa; ?>">
