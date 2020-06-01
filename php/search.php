@@ -176,25 +176,27 @@ if(empty($_SESSION['profilowe']))
 			echo '</select><br><br>';
 			echo 'Cena: <br>Od:<input type="text" name="od" placeholder="0.00zł"/><br>Do:<input type="text" name="do" placeholder="0.00zł"/><br><br><center><button name="bt1">Wyszukaj</button></center></form><br><br></div>';
 			echo '<div id="losoferty">';
-			$sql="select * from oferty where nazwa_oferty like '%$search_value%' AND aktywna='1'";
+			$sql="select *, oferty.id from oferty left join users on oferty.id_uzytkownika=users.id where oferty.nazwa_oferty like '%$search_value%' AND oferty.aktywna='1' AND oferty.id_uzytkownika=users.id";
 			if($kategoria!=0){
-				$sql .= " AND id_kategorii='$kategoria'";
+				$sql .= " AND oferty.id_kategorii='$kategoria'";
 			}
 			if(!empty($stan)){
-				$sql .= " AND stan='$stan'";
+				$sql .= " AND oferty.stan='$stan'";
 			}
 			if(!empty($od) OR $od!=0){
-				$sql .= " AND cena >= '$od'";
+				$sql .= " AND oferty.cena >= '$od'";
 			}
 			if(!empty($do) OR $do!=0){
-				$sql .= " AND cena <= '$do'";
+				$sql .= " AND oferty.cena <= '$do'";
 			}
 			if(!empty($marka)){
-				$sql .= " AND marka LIKE '$marka'";
+				$sql .= " AND oferty.marka LIKE '$marka'";
 			}
+			echo $row;
 			$res=$con->query($sql);
 			if(mysqli_num_rows($res)!=0){
 			while($row=$res->fetch_assoc()){
+				
 				$id=$row["id"];
 				$base="./show.php";
 				$data = array(
@@ -202,9 +204,9 @@ if(empty($_SESSION['profilowe']))
 				);
 				$url = $base . '?' . http_build_query($data);
 				if($row["premium"]==1){
-					echo '<a href='.$url.'><div class="ofertapromowana"><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="crpromowane"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
+					echo '<a href='.$url.'><div class="ofertapromowana"><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="crpromowane"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div> <div style="margin-top:-30px;margin-bottom:15px;margin-left:10px;" class="seller">od sprzedawcy '.$row["nazwa_uzytkownika"].'</div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
 				}else{
-					echo '<a href='.$url.'><div class="oferta" ><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
+					echo '<a href='.$url.'><div class="oferta" ><div class="pic"><img height="133" width="180" src=oferty/'. $row["nazwa_zdjecia"] .'></div><div class="cr"><div class="tit"><b>'.$row["nazwa_oferty"].'</b></div><div class="seller" style="margin-top:-30px;margin-bottom:15px;margin-left:10px;" >od sprzedawcy '.$row["nazwa_uzytkownika"].'</div><div class="stan1"><b>Stan:</b> '.$row["stan"].'</div><div class="marka1"><b>Marka:</b> '.$row["marka"].'</div><div class="pric"><b>Cena:</b> '.$row["cena"].' zł</div></div></div></a>';
 				};
 				
 				
