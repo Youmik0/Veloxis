@@ -1,0 +1,9 @@
+1. Pobrać XAMPP np z strony: https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/7.4.3/xampp-portable-windows-x64-7.4.3-0-VC15.zip/download
+2. Do folderu /xampp/htdocs stworzyć nowy folder veloxis i do niego wrzucić wszystkie foldery (css,database,fonts itd...) 
+pobrane z github: https://github.com/Youmik0/Veloxis
+3. Włączyć xampp-control.exe wcisnąć start obok Apache i MySQL.
+4. Wcisnąć na admin obok MySQL.
+5. Należy stworzyć nową pustą bazę o nazwie "veloxis"
+6. Po wciśnięciu na nią, na górze strony powinna się pojawić opcja import, wcisnąć ją , następnie wcisnąć przycisk
+"wybierz plik" wybrać wtedy veloxis.sql z folderu database następnie wcisnąć "wykonaj".
+7. W przeglądarkę wpisać :  localhost/veloxis/php/veloxis.php
