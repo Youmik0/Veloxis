@@ -39,7 +39,7 @@
 	   <?php if(!empty($_pass2_error)) echo $_pass2_error; ?>
 	   <div class="s1">
 	   <input type="checkbox" name="reg" id="reg">
-	   <label for="reg">Oświadczam, że znam i akceptuję postanowienia <a href="url">Regulaminu Veloxis.</a></label>
+	   <label for="reg">Oświadczam, że znam i akceptuję postanowienia <a href="regulamin.php">Regulaminu Veloxis.</a></label>
 	   <?php if(!empty($_reg_error)) echo $_reg_error; ?>
 	   </div><div class="s1">
 	   <input type="checkbox" name="pozw" id="pozw">
