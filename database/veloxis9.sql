@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 31 Maj 2020, 18:22
+-- Czas generowania: 02 Cze 2020, 17:41
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.3
 
@@ -66,19 +66,6 @@ CREATE TABLE `oferty` (
   `aktywna` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
---
--- Zrzut danych tabeli `oferty`
---
-
-INSERT INTO `oferty` (`id`, `nazwa_oferty`, `opis`, `cena`, `id_kategorii`, `marka`, `stan`, `id_uzytkownika`, `premium`, `id_zdjecia`, `nazwa_zdjecia`, `aktywna`) VALUES
-(1, 'Oferta', 'OwO', '234.00', 4, 'Xander', 'Nowy z defektem', 1, 0, 1, '57761-indeks.jpg', 1),
-(2, 'Oferta 2', 'aww', '123.00', 3, 'Moje', 'Do renowacji', 1, 0, 2, '30129-Azusa.bmp', 1),
-(4, 'Sprzedam Dupe', 'OwO', '200.00', 4, 'Moje', 'Do renowacji', 4, 1, 4, '17171-albedo.bmp', 1),
-(5, 'Allah', 'ass', '1111.00', 1, 'Xander', 'Nowy z defektem', 4, 1, 5, '12784-avnPwDW_700b.jpg', 1),
-(7, 'Hans 1 - Bez premium', 'Hans', '123.00', 4, 'Xander', 'Regenerowany', 5, 1, 7, '49555-EDU7IzvUEAUPagh (1).jpg', 1),
-(8, 'Hans 2 - Bez premium', 'OwO', '666.00', 5, 'Awand', 'Uszkodzony', 5, 1, 8, '5548-aRUZ7s7kra-E4m8kuu_PMT8rOlAHJIMGpZpTmK7fOwk.jpg', 1),
-(9, 'Hans 3 - premium', 'OwO', '222.00', 5, 'Ass', 'Nowy bez metki', 5, 1, 9, '53022-Konachan.com - 217288 aka_tonbo_(lovetow) cropped deep-sea_girl_(vocaloid) hatsune_miku long_hair vocaloid.jpg', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -90,48 +77,6 @@ CREATE TABLE `oferty_zdj` (
   `nazwa` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_polish_ci NOT NULL,
   `id_oferty` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Zrzut danych tabeli `oferty_zdj`
---
-
-INSERT INTO `oferty_zdj` (`id`, `nazwa`, `id_oferty`) VALUES
-(1, '57761-indeks.jpg', 1),
-(9, '30129-Azusa.bmp', 2),
-(10, 'puste.jpg', 2),
-(13, '', 1),
-(14, '', 1),
-(15, '', 1),
-(16, '35047-2616673.jpg.png', 1),
-(17, '84310-IMG.jpg', 2),
-(19, '67150-c6d88019860a420ca8fd0a2fb9c7fa64.jpg', 2),
-(20, '76569-703fc31885e53b5a34e8ca1908012499.jpg', 1),
-(21, '56758-703fc31885e53b5a34e8ca1908012499.jpg', 1),
-(22, '23552-APAiRJm.png', 1),
-(23, '69424-APAiRJm.png', 1),
-(24, '4549-APAiRJm.png', 1),
-(25, '48605-IMG.jpg', 1),
-(26, '76750-IMG.jpg', 1),
-(27, '47078-IMG.jpg', 1),
-(28, '97178-IMG.jpg', 1),
-(29, '79974-IMG.jpg', 1),
-(30, '2890-IMG.jpg', 1),
-(31, '66566-IMG.jpg', 1),
-(32, '17790-albedo.bmp', 2),
-(33, '17171-albedo.bmp', 4),
-(34, '12784-avnPwDW_700b.jpg', 5),
-(36, '49555-EDU7IzvUEAUPagh (1).jpg', 7),
-(37, '5548-aRUZ7s7kra-E4m8kuu_PMT8rOlAHJIMGpZpTmK7fOwk.jpg', 8),
-(38, '53022-Konachan.com - 217288 aka_tonbo_(lovetow) cropped deep-sea_girl_(vocaloid) hatsune_miku long_hair vocaloid.jpg', 9),
-(40, '27578-IMG.jpg', 1),
-(41, '56138-pxqj.jpg', 1),
-(42, '48461-Paz_Vert.jpg', 2),
-(44, '29256-1477.bmp', 1),
-(45, '65670-364582.jpg', 11),
-(46, '90397-Azusa.bmp', 12),
-(47, '25723-Paz_Vert.jpg', 11),
-(48, '25885-Paz_Vert.jpg', 11),
-(49, '40186-1477.bmp', 1);
 
 -- --------------------------------------------------------
 
@@ -145,15 +90,6 @@ CREATE TABLE `premium` (
   `premium_do` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
---
--- Zrzut danych tabeli `premium`
---
-
-INSERT INTO `premium` (`id`, `id_uzytkownika`, `premium_do`) VALUES
-(1, 1, '2022-10-20 15:07:32'),
-(4, 4, '2020-06-26 16:10:24'),
-(5, 5, '2020-06-26 19:32:26');
-
 -- --------------------------------------------------------
 
 --
@@ -165,13 +101,6 @@ CREATE TABLE `profilowe` (
   `nazwa` varchar(200) NOT NULL,
   `id_uzytkownika` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Zrzut danych tabeli `profilowe`
---
-
-INSERT INTO `profilowe` (`id`, `nazwa`, `id_uzytkownika`) VALUES
-(1, '52827-364582.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -224,15 +153,18 @@ CREATE TABLE `transakcje` (
   `imie_nazwisko_s` varchar(200) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+-- --------------------------------------------------------
+
 --
--- Zrzut danych tabeli `transakcje`
+-- Struktura tabeli dla tabeli `ulubione`
 --
 
-INSERT INTO `transakcje` (`id`, `nazwa`, `cena`, `sprzedawca`, `dostawa`, `cena_dostawy`, `cena_koncowa`, `kupujacy`, `nr_bankowy_k`, `id_oferty`, `nr_bankowy_s`, `adres_s`, `adres_k`, `imie_nazwisko_k`, `imie_nazwisko_s`) VALUES
-(1, 'Allah', 1111, 'Awa', 'Odbiór w punkcie za pobraniem', 12, 1123, 'Weeb', '666', 5, '', '', '', '', ''),
-(2, 'Sprzedam Dupe', 200, 'Awa', 'Odbiór w punkcie', 10, 210, 'Weeb', '666', 4, '', '', '', '', ''),
-(3, 'Oferta', 234, 'Weeb', 'Odbiór w punkcie za pobraniem', 12, 246, 'Weeb', '666', 1, '', '', '', '', ''),
-(4, 'Hans 1 - Bez premium', 123, 'Hans', 'Odbiór w punkcie', 10, 133, 'Weeb', '11111111111111111111111111', 7, '0', ', , , ', 'Zielona góra, Ulica JP, ćwiartki3/4, 22-345', 'Weeb Weeb', 'Hans Weeb');
+CREATE TABLE `ulubione` (
+  `id` int(11) NOT NULL,
+  `id_oferty` int(11) NOT NULL,
+  `id_uzytkownika` int(11) NOT NULL,
+  `nazwa_uzytkownika` varchar(50) COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
 
@@ -257,17 +189,6 @@ CREATE TABLE `users` (
   `kod_pocztowy` varchar(6) COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
---
--- Zrzut danych tabeli `users`
---
-
-INSERT INTO `users` (`id`, `nazwa_uzytkownika`, `imie`, `nazwisko`, `telefon`, `email`, `haslo`, `typ_konta`, `id_premium`, `miasto`, `ulica`, `nr_zamieszkania`, `nr_bankowy`, `kod_pocztowy`) VALUES
-(1, 'Weeb', 'Weeb', 'Weeb', '123456789', 'Weeb@gmail.com', 'a472d788aa233457dd764aa6c7ae4018', 1, 1, 'Zielona góra', 'Ulica JP', 'ćwiartki3/4', '11111111111111111111111111', '22-345'),
-(2, 'Test', 'Test', 'Test', '234324324', 'Test@gmail.com', '68eacb97d86f0c4621fa2b0e17cabd8c', 3, NULL, 'Ass', 'Blast', 'aaa', '0', '12222'),
-(3, 'Nowy', 'Nowy', 'Nowy', '54654642', 'nowy@gmail.com', '202025f4f6b40ab1e3df52dee62b998e', 3, NULL, NULL, NULL, NULL, '0', NULL),
-(4, 'Awa', 'Awa', 'Awa', '12343523', 'Awa@gmail.com', 'aa00ce8b38d75c80bcaae1b8c33a89ab', 2, 4, NULL, NULL, NULL, '0', NULL),
-(5, 'Hans', 'Hans', 'Wans', '666420123', 'Hans@gmail.com', 'eb56002f1c0a8f9ab1b2aa2d08a1c502', 2, 5, NULL, NULL, NULL, '0', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -281,15 +202,6 @@ CREATE TABLE `zgloszenia` (
   `id_oferty` int(11) NOT NULL,
   `id_zgloszonego` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
---
--- Zrzut danych tabeli `zgloszenia`
---
-
-INSERT INTO `zgloszenia` (`id`, `opis`, `nazwa_oferty`, `id_oferty`, `id_zgloszonego`) VALUES
-(1, '', 'Sprzedam Dupe', 4, 4),
-(2, 'awww', 'Allah', 5, 4),
-(3, 'drtxyrdytdryxrdytfrdtytfcygtf', 'Hans 1 - Bez premium', 7, 5);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -351,6 +263,15 @@ ALTER TABLE `transakcje`
   ADD KEY `id_oferty` (`id_oferty`);
 
 --
+-- Indeksy dla tabeli `ulubione`
+--
+ALTER TABLE `ulubione`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_oferty` (`id_oferty`),
+  ADD KEY `id_uzytkownika` (`id_uzytkownika`),
+  ADD KEY `nazwa_uzytkownika` (`nazwa_uzytkownika`);
+
+--
 -- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
@@ -380,25 +301,25 @@ ALTER TABLE `kategoria`
 -- AUTO_INCREMENT dla tabeli `oferty`
 --
 ALTER TABLE `oferty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `oferty_zdj`
 --
 ALTER TABLE `oferty_zdj`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `premium`
 --
 ALTER TABLE `premium`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `profilowe`
 --
 ALTER TABLE `profilowe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `stan`
@@ -410,19 +331,25 @@ ALTER TABLE `stan`
 -- AUTO_INCREMENT dla tabeli `transakcje`
 --
 ALTER TABLE `transakcje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT dla tabeli `ulubione`
+--
+ALTER TABLE `ulubione`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `zgloszenia`
 --
 ALTER TABLE `zgloszenia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -456,6 +383,14 @@ ALTER TABLE `transakcje`
   ADD CONSTRAINT `transakcje_ibfk_1` FOREIGN KEY (`id_oferty`) REFERENCES `oferty` (`id`),
   ADD CONSTRAINT `transakcje_ibfk_2` FOREIGN KEY (`kupujacy`) REFERENCES `users` (`nazwa_uzytkownika`),
   ADD CONSTRAINT `transakcje_ibfk_3` FOREIGN KEY (`sprzedawca`) REFERENCES `users` (`nazwa_uzytkownika`);
+
+--
+-- Ograniczenia dla tabeli `ulubione`
+--
+ALTER TABLE `ulubione`
+  ADD CONSTRAINT `ulubione_ibfk_2` FOREIGN KEY (`nazwa_uzytkownika`) REFERENCES `users` (`nazwa_uzytkownika`),
+  ADD CONSTRAINT `ulubione_ibfk_3` FOREIGN KEY (`id_uzytkownika`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `ulubione_ibfk_4` FOREIGN KEY (`id_oferty`) REFERENCES `oferty` (`id`);
 
 --
 -- Ograniczenia dla tabeli `users`
