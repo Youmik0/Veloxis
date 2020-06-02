@@ -11,13 +11,19 @@ $email = "";
 $haslo1 = "";
 $haslo2 = "";
 
+
 $errors = array();
+
+
 
 
 //Połączenie z bazą danych
 $db = mysqli_connect('localhost','root','','Veloxis');
 
 $db->set_charset("utf8");
+
+
+
 
 //Rejestracja użytkownika
 if(isset($_POST['reg_user'])){
@@ -131,6 +137,8 @@ if(array_key_exists('login_user', $_POST)) {
 if(isset($_POST['login_user'])){//Pozyskanie danych z okienka do logowania
 	$nazwa_uzytkownika = mysqli_real_escape_string($db,$_POST['nazwa_uzytkownika']);
 	$haslokodowane = mysqli_real_escape_string($db,$_POST['haslo']);
+	$captcha_rand=mysqli_real_escape_string($db,$_POST['captcha_rand']);
+	$captcha=mysqli_real_escape_string($db,$_POST['captcha']);
 }
 
 if(empty($nazwa_uzytkownika)){//Sprawdzenie czy nie pusty user
@@ -142,7 +150,9 @@ if(empty($haslokodowane)){//Sprawdzenie czy nie puste haslo
 	array_push($errors,'<p class="err">Invalid user id or password Please try again</p>');
 }
 
-
+if($captcha!=$captcha_rand){
+	array_push($errors,'<p class="err">Źle wprowadzona captcha</p>');
+}
 
 
 if(count($errors)==0){//Jeżeli wszystko poszło dobrze:
@@ -186,5 +196,24 @@ if(count($errors)==0){//Jeżeli wszystko poszło dobrze:
 		$_password_error='<p class="err">Zła kombinacja nazwy użytkownika/hasła</p>';
 	}
 }
+}
+
+
+
+
+
+
+
+
+//Captcha
+
+	function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
 }
 ?>
