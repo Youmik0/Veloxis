@@ -7,3 +7,7 @@ pobrane z github: https://github.com/Youmik0/Veloxis
 6. Po wciśnięciu na nią, na górze strony powinna się pojawić opcja import, wcisnąć ją , następnie wcisnąć przycisk
 "wybierz plik" wybrać wtedy veloxis.sql z folderu database następnie wcisnąć "wykonaj".
 7. W przeglądarkę wpisać :  localhost/veloxis/php/veloxis.php
+
+
+Konto admin: Login: mareckin , Hasło: asdfasdf
+Losowe konto użytkownika: Login: theult1 , Hasło: bnm,bnm,
