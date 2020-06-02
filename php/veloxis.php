@@ -150,7 +150,7 @@ static $uruchomienie=0;
 			}else{
 echo '<div id="cont"><div id="losoferty" style="width:80%;">';
 				echo '<div class="slider">';
-				echo '<h1>Proponowane ofery:</h1>';
+				echo '<h1>Proponowane oferty:</h1>';
 				echo '<div class="w3-content w3-display-container">';
 
 		
