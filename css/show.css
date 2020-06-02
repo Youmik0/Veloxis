@@ -36,6 +36,8 @@ body{
 }
 
 #te{
+	margin-top:2px;
+border:0px;
   width:75%;
   height:40px;
   font-size:15px;
@@ -314,6 +316,7 @@ input[type=number]
 
 
 .button2{
+	cursor:pointer;
 	position:absolute;
 	background-color: #f44336;
 	border: none;
