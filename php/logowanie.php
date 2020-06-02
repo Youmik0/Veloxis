@@ -1,4 +1,5 @@
-<?php include('konto.php') ?>
+<?php include('konto.php')?>
+<?php $rand=generateRandomString(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,17 +8,19 @@
   <link rel="stylesheet" href="../css/logow.css">
 </head>
 <body>
+<div id="topbar"><div id="logo">Veloxis</div></div>
   <div id="logowanie">
 	
-	<div id="logo">Veloxis</div>
-	<div id="pod">&nbsp;logowanie</div>
+	<div id="pod">Logowanie</div>
 	
     <form method="post" action="logowanie.php">
 	
        <input type="text" name="nazwa_uzytkownika" placeholder="Nazwa użytkownika:"/>
 	   <?php if(!empty($_user_error)) echo $_user_error; ?>
        <input type="password" name="haslo" placeholder="Hasło:"/>
-	   <?php if(!empty($_password_error)) echo $_password_error; ?>
+	   	   <?php if(!empty($_password_error)) echo $_password_error; ?>
+	   <div class="capt" style="padding-top:10px;">Wpisz : <?php echo $rand;  ?></div><input type="text" name="captcha" placeholder="Captcha"/>
+	   <input type="hidden" name="captcha_rand" value="<?php echo $rand; ?>">
 	   <div class="s1">
 	   <a href="url">Zapomniałeś hasła?</a>
 	   </div>
