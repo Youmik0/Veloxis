@@ -36,7 +36,7 @@ $id_oferty=$Values['id_oferty'];
 <head>
   <meta charset="UTF-8">
   <title>Logowanie</title>
-  <link rel="stylesheet" href="../css/logow.css">
+  <link rel="stylesheet"  href="../css/kup.css">
 </head>
 <body>
   <div id="logowanie">
